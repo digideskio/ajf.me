@@ -1,0 +1,63 @@
+<!doctype html>
+<meta charset=utf-8>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+    a {
+        color: inherit;
+        text-decoration: none;
+        font-size: 90%;
+        text-transform: uppercase;
+    }
+</style>
+<script>
+(function () {
+    'use strict';
+    var wave = function (x) {
+        return (Math.sin(x) + 1) / 2;
+    };
+    
+    window.onload = function () {
+        var tick;
+        tick = 0;
+
+        window.setInterval(function () {
+            var x, y;
+            x = Math.floor(wave(tick / 120) * 255);
+            y = 255 - x;
+            document.body.style.backgroundColor = 'rgb(' + x + ',' + x + ',' + x + ')';
+            document.body.style.color = 'rgb(' + y + ',' + y + ',' + y + ')';
+            tick += 1;
+        }, 1000/60);
+    };
+}());
+</script>
+<title>Depths of the Internet</title>
+
+<h1>Welcome to the depths of the Internet</h1>
+<p>Where I hide links to things I find interesting.</p>
+<h2>Music</h2>
+<h3>Vidya</h3>
+<ul>
+    <li><a href="http://www.youtube.com/watch?v=t5ebAvks9ig">Killer Instinct - The Way You Move</a>
+</ul>
+<h3>Vocaloid</h3>
+<p>I don't like Kagamine Len at all. Nope. Don't have a thing for blond<sup>(e)</sup> people at all.</p>
+<ul>
+    <li><a href="http://www.youtube.com/watch?v=oO3LimIdF2Y">World is Mine/Kagamine Len</a> (Subtitled/English)
+    <li><a href="http://www.youtube.com/watch?v=M8qZ1y-BlGo">SPICE!/Kagamine Len</a> (Subtitled/English)
+    <li><a href="http://www.youtube.com/watch?v=u_gBSWE_KYE">Migikata no Chou/Kagamine Rin &amp; Len</a> (Live)
+    <li><a href="http://www.youtube.com/watch?v=0Ox5-fEH4Ww">Meltdown/Kagamine Rin</a> (Subtitled/English)
+    <li><a href="http://www.youtube.com/watch?v=g7HYtbTcrJE">Magnet/Kagamine Rin &amp; Len</a> (Subtitled/English &amp; Chinese)
+    <li><a href="http://www.youtube.com/watch?v=rFHWW8PuoDw">Promise/Kagamine Rin &amp; Hatsune Miku</a> (Live)
+    <li><a href="http://www.youtube.com/watch?v=VoPzP-MwcLI">Just Be Friends/Megarine Luka</a> (Subtitled/English)
+    <li><a href="http://www.youtube.com/watch?v=ozUpNGnh-fM">Romeo &amp; Cinderella/Kagamine Rin &amp; Len</a> (Subtitled/English)
+    <li><a href="http://www.youtube.com/watch?v=_JGaQ3g8WU4">Matryoshka/Hatsune Miku &amp; GUMI</a> (Subtitled/English)
+    <li><a href="http://www.youtube.com/watch?v=uRQTZC3uNW4">Triple Baka/Hatsune Miku</a> (Subtitled/English)
+    <li><a href="http://www.youtube.com/watch?v=3gD4Q_G0UwE">Fukkireta/Kasane Teto</a> (Subtitled/English)
+</ul>
+<h3>Vocaloid songs that have absolutely nothing to do with depression, love or sex</h3>
+<p>This space left intentionally blank.</p>
