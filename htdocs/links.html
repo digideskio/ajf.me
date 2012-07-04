@@ -13,31 +13,6 @@
         text-transform: uppercase;
     }
 </style>
-<script>
-(function () {
-    'use strict';
-    var wave = function (x) {
-        return (Math.sin(x) + 1) / 2;
-    };
-    
-    window.onload = function () {
-        var tick;
-        tick = 0;
-
-        window.setInterval(function () {
-            var x, y;
-            x = Math.floor(wave(tick / 120) * 255);
-            // hybrid contrast
-            y = Math.abs(x - 128) / 2 + (x < 128 ? 255 : 0) / 2;
-            document.body.style.backgroundColor = 'rgb(' + x + ',' + x + ',' + x + ')';
-            document.body.style.color = 'rgb(' + y + ',' + y + ',' + y + ')';
-            tick += 1;
-        }, 1000/60);
-    };
-}());
-</script>
-<title>Depths of the Internet</title>
-
 <h1>Welcome to the depths of the Internet</h1>
 <p>Where I hide links to things I find interesting.</p>
 <h2>Music</h2>
@@ -61,7 +36,6 @@
     <li><a href="http://www.youtube.com/watch?v=uRQTZC3uNW4">Triple Baka/Hatsune Miku</a> (Subtitled/English)
     <li><a href="http://www.youtube.com/watch?v=3gD4Q_G0UwE">Fukkireta/Kasane Teto</a> (Subtitled/English)
     <li><a href="http://www.youtube.com/watch?v=T0-2lzA7_Cg">Po Pi Po/Hatsune Miku</a> (Subtitled/English)
-    <li><a href="http://www.youtube.com/watch?v=XqqOM2SOq5w">Po Pi Po/Hatsune Miku Ryu☆ Remix</a>
 </ul>
 <h3>Vocaloid songs that have absolutely nothing to do with depression, love or sex</h3>
 <p>This space left intentionally blank.</p>
