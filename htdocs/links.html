@@ -27,7 +27,8 @@
         window.setInterval(function () {
             var x, y;
             x = Math.floor(wave(tick / 120) * 255);
-            y = 255 - x;
+            // hybrid contrast
+            y = Math.abs(x - 128) / 2 + (x < 128 ? 255 : 0) / 2;
             document.body.style.backgroundColor = 'rgb(' + x + ',' + x + ',' + x + ')';
             document.body.style.color = 'rgb(' + y + ',' + y + ',' + y + ')';
             tick += 1;
