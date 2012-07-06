@@ -46,7 +46,8 @@ article {
 }
 
 footer {
-    font-size: 10pt;
+    font-size: 9pt;
     color: gray;
     clear: both;
+    margin-top: 5px;
 }
