@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#wrapper {
+    width: 720px;
+    margin: 0px auto;
+}
+
+header {
+    margin-bottom: 10px;
+}
+header h1 {
+    margin-bottom: 0px;
+}
+header #tagline {
+    font-size: 10pt;
+    color: gray;
+}
+
+article {
+    position: relative;
+}
+#stars {
+    display: block;
+    width: 720px;
+    height: 360px;
+    clear: both;
+    background-color: black;
+}
+#stars-superimpose {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    width: 200px;
+    padding: 5px;
+    font-size: 10pt;
+}
+#stars-superimpose a {
+    color: orange;
+    text-decoration: none;
+}
+#stars-superimpose a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    font-size: 10pt;
+    color: gray;
+    clear: both;
+}
