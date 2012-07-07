@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(16, 16, 16);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: rgb(127, 127, 127);
+    text-transform: uppercase;
+    font-size: 52pt;
+    margin: 4px;
+}
+
+#disclaimer {
+    font-size: 10pt;
+    font-family: Georgia, serif;
+    border: 1px solid rgb(64, 64, 64);
+    max-width: 800px;
+    line-height: 150%;
+    padding: 4px;
+    color: black;
+    background-color: white;
+}
+#disclaimer p {
+    margin: 2px;
+}
+
+ol {
+    list-style-type: katakana;
+    font-size: 18pt;
+    line-height: 200%;
+}
+ol {
+    padding-left: 50px;
+}
+
+a {
+    color: orange;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 0px) and (max-width:400px) {
+    h1 {
+        font-size: 36pt;
+    }
+    ol {
+        font-size: 12pt;
+    }
+}
