@@ -15,6 +15,15 @@ title {
     margin: 0.67em 0px;
 }
 
+meta {
+    display: block;
+}
+meta[charset]::after {
+    display: block;
+    font-family: monospace;
+    content: 'Charset: ' attr(charset);
+}
+
 html {
     background-color: rgb(16, 16, 16);
 }
