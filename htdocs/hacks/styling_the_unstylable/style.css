@@ -1,0 +1,26 @@
+* {
+    font-family: sans-serif;
+}
+
+head {
+    display: block;
+    padding: 8px;
+    background-color: rgb(127, 255, 127);
+}
+
+title {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0px;
+}
+
+html {
+    background-color: rgb(16, 16, 16);
+}
+body {
+    background-color: white;
+    max-width: 700px;
+    margin: 0px auto;
+    padding: 8px;
+}
