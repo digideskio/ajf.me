@@ -13,6 +13,14 @@
     right: 0;
     bottom: 0;
 }
+h1 {
+    position: fixed;
+    padding: 5px;
+    margin: 0;
+    left: 0;
+    top: 0;
+    font-family: monospace;
+}
 html, body {
     height: 100%;
 }
@@ -24,7 +32,8 @@ body {
 }
 </style>
 
-<iframe id=music width="320" height="32" src="http://www.youtube.com/embed/HjjDOdaFZg0?autoplay=1" frameborder="0" allowfullscreen></iframe>
+<h1>#php.pecl</h1>
+<iframe id=music width="320" height="30" src="http://www.youtube.com/embed/HjjDOdaFZg0?autoplay=1" frameborder="0" allowfullscreen></iframe>
 <img src=animated_elephant.gif alt=elePHPant id=elePHPant>
 
 <script>
@@ -33,8 +42,8 @@ body {
         var pos = 0;
         setInterval(function () {
             document.body.style.backgroundPositionX = pos + 'px';
-            pos += 0.25;
-        }, 1000/60);
+            pos += 0.2;
+        }, 1000/20);
     };
 }());
 </script>
