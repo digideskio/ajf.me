@@ -26,6 +26,7 @@ html, body {
 }
 body {
     background-image: url(desert.jpg);
+    background-position-x: 50%;
     background-position-y: center;
     background-repeat: repeat-x;
     background-size: 200%;
@@ -39,11 +40,11 @@ body {
 <script>
 (function () {
     window.onload = function () {
-        var pos = 0;
+        var pos = 50;
         setInterval(function () {
-            document.body.style.backgroundPositionX = pos + 'px';
-            pos += 1;
-        }, 1000/4);
+            document.body.style.backgroundPositionX = pos + '%';
+            pos -= 0.25;
+        }, 1000);
     };
 }());
 </script>
