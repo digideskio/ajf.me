@@ -13,9 +13,16 @@ header {
 header h1 {
     margin-bottom: 0px;
 }
-header #tagline {
+#tagline {
     font-size: 10pt;
     color: gray;
+}
+#tagline a {
+    color: #7bf;
+    text-decoration: none;
+}
+#tagline a:hover {
+    text-decoration: underline;
 }
 
 article {
@@ -43,6 +50,9 @@ article {
 }
 #stars-superimpose a:hover {
     text-decoration: underline;
+}
+a#whoosh {
+    color: #afa;
 }
 
 footer {

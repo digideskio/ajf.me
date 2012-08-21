@@ -52,6 +52,23 @@
             canvas.style.width = document.getElementById('wrapper').style.width = '320px';        
         }
 
+        document.getElementById('whoosh').onclick = function () {
+            canvas.width /= 8;
+            this.temp = this.onclick;
+            this.onclick = this.onclick2;
+            this.onclick2 = this.temp;
+            delete this.temp;
+            return false;
+        };
+        document.getElementById('whoosh').onclick2 = function () {
+            canvas.width *= 8;
+            this.temp = this.onclick;
+            this.onclick = this.onclick2;
+            this.onclick2 = this.temp;
+            delete this.temp;
+            return false;
+        };
+
         stars = [];
 
         render = function render() {
