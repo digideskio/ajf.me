@@ -43,6 +43,15 @@
 
         ctx = canvas.getContext('2d');
 
+        // 3 widths: 720 (HTML/CSS default), 920, 320
+        if (window.innerWidth > 920) {
+            canvas.width = 920;
+            canvas.style.width = document.getElementById('wrapper').style.width = '920px';
+        } else if (window.innerWidth < 720) {
+            canvas.width = 320;
+            canvas.style.width = document.getElementById('wrapper').style.width = '320px';        
+        }
+
         stars = [];
 
         render = function render() {
@@ -51,7 +60,7 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             starnum = Math.floor(Math.sqrt(canvas.width * canvas.height) / 2);
-            starspeed = canvas.width / 8;
+            starspeed = 115;
 
             if (stars.length < starnum - 1) {
                 for (i = stars.length; i < starnum; i += 1) {
