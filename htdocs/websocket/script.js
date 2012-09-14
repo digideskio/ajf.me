@@ -12,7 +12,7 @@
             state.innerHTML = 'State: WebSocket support detected, not connected.';
             connectbtn.disabled = false;
             connectbtn.onclick = function onclick() {
-                socket = new window.WebSocket('ws://ws.websocket.us:8080/');
+                socket = new window.WebSocket('ws://ajf.me:8080/');
                 socket.onopen = function () {
                     state.innerHTML = 'State: Connected.';
                     sendbtn.disabled = false;
