@@ -1,0 +1,167 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>WebSockets</title>
+<meta name=viewport content="width=device-width">
+<link rel=stylesheet href=style.css>
+<link rel="shortcut icon" href=favicon.gif>
+<script src=html5shiv.js></script>
+
+<div id=wrapper>
+<a id=forkme href="https://github.com/TazeTSchnitzel/ajf.me/tree/master/htdocs/websocket"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+<header>
+    <h1>WebSocket</h1>
+    <a id=html5logo href="http://www.w3.org/html/logo/"><img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-semantics.png" width="197" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, and Semantics" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, and Semantics"></a>
+    <div id=tagline>Realtime communication for the web</div>
+</header>
+
+<nav>
+     <ul>
+        <li><a href=#whatis>What is WebSocket?</a>
+        <li><a href=#demo>Live Demo</a>
+        <li><a href=#howdoi>Writing a client and server</a>
+        <li><a href=#how>How WebSocket works</a>
+        <li><a href=#shouldiuse>Should you use WebSocket?</a>
+        <li><a href=#libs>Server libraries and frameworks</a>
+        <li><a href=#moreinfo>More information</a>
+        <li><a href=#who>About me</a>
+     </ul>
+</nav>
+
+<article>
+    <p>This is an HTML5 WebSocket community resource <a href="https://github.com/TazeTSchnitzel/ajf.me/tree/master/htdocs/websocket">which you can edit</a>, with information about the WebSocket protocol and API, tutorials on how to write WebSocket clients and servers, and a list of available <a href=#>WebSocket frameworks and libraries</a>.</p>
+    <h2 id=whatis>What is WebSocket?</h2>
+    <p>WebSocket is a new standard for realtime communication on the web, which is part of the HTML5 umbrella. WebSocket is a simple JavaScript API and accompanying protocol that allows you to create "web sockets", capable of bi-directional full-duplex communication over a persistent TCP connection (socket). These "web sockets", unlike traditional TCP sockets, are very easy to use.</p>
+    <p>The most recent (<a href="http://tools.ietf.org/html/rfc6455">IETF standard</a>) version of the WebSocket TCP protocol is supported in modern browsers such as Internet Explorer 10, Firefox 11, and Chrome 16.</p>
+    <h2 id=demo>Live Demo</h2>
+    <p>Here's a demo rigged up to the echo server example from the next section, so you can test if your browser supports WebSocket.</p>
+    <div id=tryit>
+        <div id=state>State: Not yet loaded</div>
+        <input id=input value="Type something!"><button id=sendbtn disabled>Send</button><br>
+        <button id=connectbtn disabled>Connect</button>
+    </div>
+    <h2 id=howdoi>Writing a client and server</h2>
+    <p>Writing a WebSocket application in JavaScript couldn't be easier. Simply establish a connection, and hook into the open, error, message and close events as necessary. Remember, WebSocket is subject to the same-origin policy, like AJAX. This means if you want to test your client locally, you'll need to run a web server (e.g. python -m SimpleHTTPServer). Here's a simple client, which should work in newer browsers:</p>
+        <code>
+            <span class=keyword>var</span> socket = <span class=keyword>new</span> WebSocket(<span class=literal>'ws://localhost:8080/'</span>);<br>
+            socket.onopen = <span class=keyword>function</span> () {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;alert(<span class=literal>'Connected!'</span>);<br>
+            };<br>
+            socket.onmessage = <span class=keyword>function</span> (event) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;alert(<span class=literal>'Received data: '</span> + event.data);<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;socket.close();<br>
+            };<br>
+            socket.onclose = <span class=keyword>function</span> () {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;alert(<span class=literal>'Lost connection!'</span>);<br>
+            };<br>
+            socket.send(<span class=literal>'hello, world!'</span>);<br>
+        </code>
+    <p>Aside from handling the error event (with onerror), that's all you need for a functional WebSocket client.</p>
+    <p>There are <a href=#libs>libraries</a> for helping to write WebSocket server applications, compatible with various languages and frameworks. Here's a simple echo server written in Python using <a href="http://twistedmatrix.com/">Twisted</a> and <a href="https://github.com/MostAwesomeDude/txWS">txWS</a>:</p> 
+        <code>
+            <span class=keyword>from</span> twisted.internet <span class=keyword>import</span> protocol, reactor<br>
+            <span class=keyword>from</span> txws <span class=keyword>import</span> WebSocketFactory<br>
+            <br>
+            <span class=keyword>class</span> Echo(protocol.Protocol):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class=keyword>def</span> dataReceived(self, data):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.transport.write(data)<br>
+            <br>
+            <span class=keyword>class</span> EchoFactory(protocol.Factory):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class=keyword>def</span> buildProtocol(self, addr):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class=keyword>return</span> Echo()<br>
+            <br>
+            reactor.listenTCP(<span class=literal>8080</span>, WebSocketFactory(EchoFactory()))<br>
+            reactor.run()<br>
+        </code>
+    <h2 id=how>How WebSocket works</h2>
+    <p>Like standard HTTP, WebSocket by default uses port 80 in the clear and 443 over SSL. The WebSocket client establishes an HTTP connection and requests to switch the protocol using the HTTP Upgrade mechanism, and then follows a handshake protocol to ensure both client and server support WebSocket. Since WebSocket connections start off as HTTP, WebSocket can work through many existing proxies and firewalls, unlike some other protocols.</p>
+    <p>Once the connection is established, messages are sent as "frames", either text or binary format, in both directions. These are the data strings you send and receive in JavaScript.</p>
+    <p>WebSocket URIs have the same basic format as HTTP URIs, but with a different URI scheme: ws://hostname:port/path, e.g. ws://example.com/echo or ws://example.net:8080. The path can be used to distinguish the purpose of the connection, however some servers ignore it. Secure WebSocket (WebSocket over SSL/TLS) URIs begin with wss:// instead of ws://.</p>
+    <h2 id=shouldiuse>Should you use WebSocket?</h2>
+    <p>WebSocket provides many benefits compared to alternatives (e.g. long-polling or Comet), such as much lower overhead, persistent connections, and low latency. That said, WebSocket is not a mature technology, and older browsers do not support it. If you are targeting only modern, HTML5-compatible browsers, there is no reason to avoid it. However, should you need to support older browsers, there are various solutions to help you, which use Flash or long-polling, e.g. <a href="https://github.com/sockjs/sockjs-client">SockJS</a>, <a href="https://github.com/gimite/web-socket-js">web-socket-js</a> or <a href="http://socket.io/">Socket.IO</a>.</p>
+    <h2 id=libs>Server libraries and frameworks</h2>
+    <p>This list is far from comprehensive. There are many WebSocket libraries out there. If you'd like to extend it, <a href="https://github.com/TazeTSchnitzel/WebSocket.us">send a pull request</a> or <a href=#who>contact me</a>.</p>
+    <div id=liblist>
+        <h3>C++/Qt</h3>
+        <ul>
+            <li><a href="http://code.google.com/p/tufao/">Tufão</a>
+        </ul>
+        <h3>C#/.NET</h3>
+        <ul>
+            <li><a href="http://xsockets.net/">XSockets.NET</a> (standalone)
+            <li><a href="https://github.com/statianzo/Fleck">Fleck</a> (standalone)
+        </ul>
+        <h3>Go</h3>
+        <ul>
+            <li><a href="http://code.google.com/p/go/source/checkout?repo=net">go.net/websocket</a> (<a href="http://go.pkgdoc.org/code.google.com/p/go.net/websocket">docs</a>)
+        </ul>
+        <h3>Haskell</h3>
+        <ul>
+            <li><a href="https://github.com/jaspervdj/websockets">websockets</a>
+        </ul>
+        <h3>Java</h3>
+        <ul>
+            <li><a href="https://github.com/Atmosphere/atmosphere">Atmosphere</a>
+        </ul>
+        <h3>Node.js</h3>
+        <ul>
+            <li><a href="https://github.com/Worlize/WebSocket-Node">WebSocket-Node</a>
+            <li><a href="http://socket.io/">Socket.IO</a>
+        </ul>
+        <h3>Objective-C/iOS</h3>
+        <ul>
+            <li><a href="https://github.com/square/SocketRocket">SocketRocket</a>
+        </ul>
+        <h3>Perl</h3>
+        <ul>
+            <li><a href="http://mojolicio.us/">Mojolicious</a>
+            <li><a href="https://github.com/vti/pocketio">PocketIO</a>
+        </ul>
+        <h3>PHP</h3>
+        <ul>
+            <li><a href="https://github.com/nicokaiser/php-websocket">php-websocket</a>
+        </ul>
+        <h3>Python</h3>
+        <ul>
+            <li><a href="https://github.com/Lawouach/WebSocket-for-Python">ws4py</a> for <a href="http://www.tornadoweb.org/">Tornado</a>, <a href="http://www.cherrypy.org/">CherryPy</a> or <a href="http://www.gevent.org/">gevent</a>
+            <li><a href="https://github.com/MostAwesomeDude/txWS">txWS</a> for <a href="http://twistedmatrix.com/">Twisted</a> (used in demo)
+        </ul>
+        <h3>Ruby</h3>
+        <ul>
+            <li><a href="https://github.com/igrigorik/em-websocket">EM-WebSocket</a> for <a href="http://rubyeventmachine.com/">EventMachine</a>
+        </ul>
+        <h3>Other</h3>
+        <ul>
+            <li><a href="https://github.com/disconnect/apache-websocket">apache-websocket</a>
+        </ul>
+    </div>
+    <h2 id=moreinfo>More information</h2>
+    <p>More information on WebSocket can be found at these places:</p>
+    <ul>
+        <li>W3C <a href="http://dev.w3.org/html5/websockets/">API specification</a>
+        <li>IETF <a href="http://tools.ietf.org/html/rfc6455">Protocol specification</a>
+        <li><a href="https://developer.mozilla.org/en/WebSockets">WebSockets</a> at the Mozilla Developer Network
+        <li><a href="http://en.wikipedia.org/wiki/WebSocket">Wikipedia article</a>
+    </ul>
+    <h2 id=who>About me</h2>
+    <p>This is part of <a href="/">my website</a>. You can email me at <a href="mailto:ajf@ajf.me">ajf@ajf.me</a>, and I'm <a href="http://twitter.com/TazeTSchnitzel/">also on Twitter</a>. The source code of this website is <a href="https://github.com/TazeTSchnitzel/ajf.me/tree/master/htdocs/websocket">available on GitHub</a>, if you want to contribute.</p>
+</article>
+
+<footer>
+    WebSocket.us © 2012 Andrew Faulds.
+</footer>
+
+<script src=script.js></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32169069-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</div>

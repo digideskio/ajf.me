@@ -1,0 +1,152 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+    font-size: 11pt;
+}
+
+a {
+    color: #c40;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+#wrapper {
+    display: block;
+    max-width: 845px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    overflow: hidden;
+    padding: 15px;
+    background-color: #ffffcc;
+    border-bottom: 5px solid #ddddaa;
+    border-radius: 15px;
+    margin-top: 0.5em;
+}
+    h1 {
+        float: left;
+        margin: 0px;
+        font-size: 24pt;
+    }
+    h1 .tld {
+        color: #ccc;
+    }
+    #tagline {
+        clear: left;
+        font-family: "Trebuchet MS", sans-serif;
+        font-size: 80%;
+    }
+    #html5logo {
+        float: right;
+        display: block;
+    }
+    a img {
+        border: none;
+    }
+
+nav {
+    float: left;
+    width: 125px;
+    margin: 5px;
+}
+    nav ul {
+        margin: 0px;
+        padding: 0px;
+    }
+        nav li {
+            background-color: #fca58f;
+            border-bottom: 3px solid #da836d;
+            border-radius: 4px;
+            list-style-type: none;
+        }
+        nav li a {
+            color: white;
+            font-weight: bold;
+            text-decoration: inherit;
+            display: block;
+            padding: 4px;
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 90%;
+        }
+        nav li a:hover {
+            text-decoration: none;
+        }
+
+article {
+    float: left;
+    width: 100%;
+    max-width: 700px;
+    padding: 0.2em;
+}
+    code {
+        display: block;
+        padding-left: 30px;
+    }
+    code .keyword {
+        color: #700;
+        font-weight: bold;
+    }
+    code .literal {
+        color: #f0f;
+    }
+    #tryit {
+        padding-left: 30px;
+    }
+
+#liblist {
+    padding-left: 1em;
+}
+    #liblist h3 {
+        font-family: monospace;
+        font-size: 11pt;
+    }
+    #liblist ul {
+        list-style-type: none;
+        padding-left: 1em;
+    }
+    #liblist h3, #liblist ul {
+        margin: 0.5em 0;
+    }
+
+footer {
+    color: #777;
+    font-size: 80%;
+    clear: both;
+    padding: 5px;
+    border-top: 1px solid #777;
+}
+    footer a {
+        color: #333;
+    }
+
+@media (min-width: 0px) and (max-width: 845px) {
+    body {
+        padding: 0.4em;
+    }
+    nav {
+        width: auto;
+    }
+        nav li {
+            float: left;
+            margin: 0.1em;
+        }
+    header {
+        clear: both;
+    }
+    nav li a {
+        font-size: 10pt;
+        padding: 2px;
+    }
+    article {
+        clear: both;
+        float: none;
+    }
+    #html5logo {
+        display: none;
+    }
+}
