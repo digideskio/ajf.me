@@ -1,0 +1,80 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>/depression</title>
+
+<noscript>JavaScript required. I know.</noscript>
+<script>
+(function () {
+    var words = [
+        'meaningless',
+        'death',
+        'isolated',
+        'fear',
+        'lonely',
+        'panic',
+        'anxious',
+        'lost',
+        'worthless',
+        'hopeless',
+        'darkness',
+        'cold',
+        'guilty',
+        'abandoned',
+        'sorrow',
+        'pained',
+        'hatred',
+        'hated',
+        'mocked',
+        'disgraced',
+        'excluded',
+        'winter',
+        'ominous',
+        'ending',
+        'tears',
+        'failure',
+        'pointless',
+        'deserted',
+        'empty',
+        'despair',
+        'cut off',
+        'missing',
+        'unwanted',
+        'unneeded',
+        'useless',
+        'unworthy'
+    ];
+    
+    var x = 0, num = 0, prob = 12;
+
+    window.onload = function () {
+        var scrolly = document.createElement('div');
+        scrolly.style.position = 'absolute';
+        scrolly.style.height = '100%';
+        document.body.style.overflow = 'hidden';
+        document.body.appendChild(scrolly);
+        
+        window.setInterval(function () {
+            x += 3;
+            scrolly.style.right = x + 'px';
+            var shade = Math.floor( ((Math.sin(x/1000) + 1) / 2) * 256);
+            document.body.style.backgroundColor = 'rgb(' + shade + ',' + shade + ',' + shade + ')';
+            if (Math.random() < 1/prob) {
+                var word = document.createElement('div');
+                word.appendChild(document.createTextNode(words[Math.floor(Math.random() * words.length)]));
+                var shade = Math.floor(Math.random() * 256);
+                word.style.color = 'rgb(' + shade + ',' + shade + ',' + shade + ')';
+                word.style.fontSize = Math.floor(20+Math.random()*30) + 'pt';
+                word.style.position = 'absolute';
+                word.style.left = x + 'px';
+                word.style.top = Math.random() * 100 + '%';
+                scrolly.appendChild(word);
+                num++;
+                if (scrolly.firstChild !== null && num > window.innerWidth / prob) {
+                    scrolly.removeChild(scrolly.firstChild);
+                    num--;
+                }
+            }
+        }, 1000/60);
+    };
+}());
+</script>
