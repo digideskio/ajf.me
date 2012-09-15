@@ -1,7 +1,7 @@
 /*global $: false */
 (function () {
     'use strict';
-    var textbox, preview, output, format, getNameColour, toHTML, toBBCode, namecolours, coloursbox, nextcolour, icons;
+    var textbox, preview, output, format, getNameColour, toHTML, toBBCode, namecolours, coloursbox, nextcolour, icons, useTables;
 
     icons = {
         post: 'data:image/gif;base64,R0lGODlhFAAUAMQUAKex1Jqjxba5u8bKzb7FyYGIjOPr79Tb3293fVJdgba9waCt0aaxw7K/4q65y/r9/1hXV8vY/FxiZvT7/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABQALAAAAAAUABQAAAWLICWOZGmWkiRC0GlKwyBBANC6onRMkxxFgAROx+P5gDfU7vEoHm3KycPRdEp+UFEBIXXwqFbsrWBAVMFS4xVJIU8QBirTWzysGxAyQsFgTuhFAmsBeXsGfoA8gj+EOQRFiROLEQFCIxKPVYGDSZePRZKDli+foYydpKELlKgnEoIUEI04JCortLgnIQA7',
@@ -29,32 +29,52 @@
     };
 
     toHTML = function (parts, target) {
-        var part, i, element;
+        var part, i, element, targetStack;
 
         target.innerHTML = '';
+        targetStack = [];
 
         for (i = 0; i < parts.length; i += 1) {
             part = parts[i];
 
-            if (part.text === '\n') {
-                element = document.createElement('br');
+            if (part === 'TABLE_BEGIN') {
+                element = document.createElement('table');
                 target.appendChild(element);
-            } else if (part.format === false) {
-                element = document.createTextNode(part.text);
+                targetStack.push(target);
+                target = element;
+            } else if (part === 'ROW_BEGIN') {
+                element = document.createElement('tr');
                 target.appendChild(element);
+                targetStack.push(target);
+                target = element;
+            } else if (part === 'CELL_BEGIN') {
+                element = document.createElement('td');
+                target.appendChild(element);
+                targetStack.push(target);
+                target = element;
+            } else if (part === 'TABLE_END' || part === 'ROW_END' || part === 'CELL_END') {
+                target = targetStack.pop();
             } else {
-                element = document.createElement('span');
-                if (part.format.colour !== false) {
-                    element.style.color = part.format.colour;
+                if (part.text === '\n') {
+                    element = document.createElement('br');
+                    target.appendChild(element);
+                } else if (part.format === false) {
+                    element = document.createTextNode(part.text);
+                    target.appendChild(element);
+                } else {
+                    element = document.createElement('span');
+                    if (part.format.colour !== false) {
+                        element.style.color = part.format.colour;
+                    }
+                    if (part.format.bold === true) {
+                        element.style.fontWeight = 'bold';
+                    }
+                    if (part.format.italic === true) {
+                        element.style.fontStyle = 'italic';
+                    }
+                    element.innerText = part.text;
+                    target.appendChild(element);
                 }
-                if (part.format.bold === true) {
-                    element.style.fontWeight = 'bold';
-                }
-                if (part.format.italic === true) {
-                    element.style.fontStyle = 'italic';
-                }
-                element.innerText = part.text;
-                target.appendChild(element);
             }
         }
     };
@@ -67,32 +87,46 @@
         for (i = 0; i < parts.length; i += 1) {
             part = parts[i];
 
-            if (part.text === '\n') {
-                bbcode += '\n';
-            } else if (part.format === false) {
-                bbcode += part.text;
+            if (part === 'TABLE_BEGIN') {
+                bbcode += '[table]\n';
+            } else if (part === 'TABLE_END') {
+                bbcode += '[/table]\n';
+            } else if (part === 'ROW_BEGIN') {
+                bbcode += '[tr]';
+            } else if (part === 'ROW_END') {
+                bbcode += '[/tr]\n';
+            } else if (part === 'CELL_BEGIN') {
+                bbcode += '[td]';
+            } else if (part === 'CELL_END') {
+                bbcode += '[/td]';
             } else {
-                begin = end = '';
-                if (part.format.colour !== false) {
-                    begin += '[color=' + part.format.colour + ']';
-                    end = '[/color]' + end;
+                if (part.text === '\n') {
+                    bbcode += '\n';
+                } else if (part.format === false) {
+                    bbcode += part.text;
+                } else {
+                    begin = end = '';
+                    if (part.format.colour !== false) {
+                        begin += '[color=' + part.format.colour + ']';
+                        end = '[/color]' + end;
+                    }
+                    if (part.format.bold === true) {
+                        begin += '[b]';
+                        end = '[/b]' + end;
+                    }
+                    if (part.format.italic === true) {
+                        begin += '[i]';
+                        end = '[/i]' + end;
+                    }
+                    bbcode += begin + part.text + end;
                 }
-                if (part.format.bold === true) {
-                    begin += '[b]';
-                    end = '[/b]' + end;
-                }
-                if (part.format.italic === true) {
-                    begin += '[i]';
-                    end = '[/i]' + end;
-                }
-                bbcode += begin + part.text + end;
             }
         }
 
         return bbcode;
     };
 
-    format = function (text, type) {
+    format = function (text, type, tables) {
         var parts, lines, i, pos, pos2, line, time, name, namecolour, message;
 
         lines = text.split('\n');
@@ -100,21 +134,51 @@
         namecolours = {};
         nextcolour = 0;
 
+        if (tables) {
+            parts.push('TABLE_BEGIN');
+        }
         for (i = 0; i < lines.length; i += 1) {
             line = lines[i];
 
+            if (tables) {
+                parts.push('ROW_BEGIN');
+            }
             if (type === 'steam') {
                 pos = line.indexOf(':');
                 if (pos !== -1) {
                     name = line.slice(0, pos);
                     namecolour = getNameColour(name);
                     message = line.slice(pos);
+                    if (tables) {
+                        parts.push('CELL_BEGIN');
+                    }
                     parts.push({ 'text': name, 'format': { 'colour': namecolour, 'bold': true, 'italic': false } });
+                    if (tables) {
+                        parts.push('CELL_END');
+                    }
+                    
+                    if (tables) {
+                        parts.push('CELL_BEGIN');
+                    }
                     parts.push({ 'text': message, 'format': false });
-                    parts.push({ 'text': '\n', 'format': false });
+                    if (tables) {
+                        parts.push('CELL_END');
+                    }
+                    
+                    if (!tables) {
+                        parts.push({ 'text': '\n', 'format': false });
+                    }
                 } else {
+                    if (tables) {
+                        parts.push('CELL_BEGIN');
+                    }
                     parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
-                    parts.push({ 'text': '\n', 'format': false });
+                    if (!tables) {
+                        parts.push({ 'text': '\n', 'format': false });
+                    }
+                    if (tables) {
+                        parts.push('CELL_END');
+                    }
                 }
             } else if (type === 'steam+timestamps') {
                 pos = line.indexOf('-');
@@ -125,19 +189,65 @@
                         name = line.slice(pos + 1, pos2);
                         message = line.slice(pos2);
                         namecolour = getNameColour(name);
+                        
+                        if (tables) {
+                            parts.push('CELL_BEGIN');
+                        }
                         parts.push({ 'text': time, 'format': { 'colour': false, 'bold': false, 'italic': false } });
+                        if (tables) {
+                            parts.push('CELL_END');
+                        }
+                        
+                        if (tables) {
+                            parts.push('CELL_BEGIN');
+                        }
                         parts.push({ 'text': name, 'format': { 'colour': namecolour, 'bold': true, 'italic': false } });
+                        if (tables) {
+                            parts.push('CELL_END');
+                        }
+                        
+                        if (tables) {
+                            parts.push('CELL_BEGIN');
+                        }
                         parts.push({ 'text': message, 'format': false });
-                        parts.push({ 'text': '\n', 'format': false });
+                        if (tables) {
+                            parts.push('CELL_END');
+                        }
+                        
+                        if (!tables) {
+                            parts.push({ 'text': '\n', 'format': false });
+                        }
                     } else {
+                        if (tables) {
+                            parts.push('CELL_BEGIN');
+                        }
                         parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': false } });
-                        parts.push({ 'text': '\n', 'format': false });
+                        if (tables) {
+                            parts.push('CELL_END');
+                        }
+                        if (!tables) {
+                            parts.push({ 'text': '\n', 'format': false });
+                        }
                     }
                 } else {
+                    if (tables) {
+                        parts.push('CELL_BEGIN');
+                    }
                     parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
-                    parts.push({ 'text': '\n', 'format': false });
+                    if (tables) {
+                        parts.push('CELL_END');
+                    }
+                    if (!tables) {
+                        parts.push({ 'text': '\n', 'format': false });
+                    }
                 }
             }
+            if (tables) {
+                parts.push('ROW_END');
+            }
+        }
+        if (tables) {
+            parts.push('TABLE_END');
         }
 
         return parts;
@@ -200,7 +310,7 @@
             .handle('click', function () {
                 var parts;
 
-                parts = format(textbox.value, 'steam');
+                parts = format(textbox.value, 'steam', useTables.checked);
 
                 toHTML(parts, preview);
                 output.value = toBBCode(parts);
@@ -215,7 +325,7 @@
             .handle('click', function () {
                 var parts;
 
-                parts = format(textbox.value, 'steam+timestamps');
+                parts = format(textbox.value, 'steam+timestamps', useTables.checked);
 
                 toHTML(parts, preview);
                 output.value = toBBCode(parts);
@@ -226,5 +336,11 @@
             .valign('bottom');
         $('span', button)
             .text(' + timestamps');
+            
+        useTables = $('input', buttons).DOMElement;
+        useTables.type = 'checkbox';
+        
+        $('span', buttons)
+            .text(' table formatted?');
     };
 }());
