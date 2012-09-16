@@ -52,7 +52,13 @@
                 target.appendChild(element);
                 targetStack.push(target);
                 target = element;
-            } else if (part === 'TABLE_END' || part === 'ROW_END' || part === 'CELL_END') {
+            } else if (part === 'CELL_BEGIN_RALIGN') {
+                element = document.createElement('td');
+                element.style.textAlign = 'right';
+                target.appendChild(element);
+                targetStack.push(target);
+                target = element;
+            } else if (part === 'TABLE_END' || part === 'ROW_END' || part === 'CELL_END' || part === 'CELL_END_RALIGN') {
                 target = targetStack.pop();
             } else {
                 if (part.text === '\n') {
@@ -97,8 +103,12 @@
                 bbcode += '[/tr]\n';
             } else if (part === 'CELL_BEGIN') {
                 bbcode += '[td]';
+            } else if (part === 'CELL_BEGIN_RALIGN') {
+                bbcode += '[td][right]';
             } else if (part === 'CELL_END') {
                 bbcode += '[/td]';
+            } else if (part === 'CELL_END_RALIGN') {
+                bbcode += '[/right][/td]';
             } else {
                 if (part.text === '\n') {
                     bbcode += '\n';
@@ -150,11 +160,11 @@
                     namecolour = getNameColour(name);
                     message = line.slice(pos);
                     if (tables) {
-                        parts.push('CELL_BEGIN');
+                        parts.push('CELL_BEGIN_RALIGN');
                     }
                     parts.push({ 'text': name, 'format': { 'colour': namecolour, 'bold': true, 'italic': false } });
                     if (tables) {
-                        parts.push('CELL_END');
+                        parts.push('CELL_END_RALIGN');
                     }
                     
                     if (tables) {
@@ -199,11 +209,11 @@
                         }
                         
                         if (tables) {
-                            parts.push('CELL_BEGIN');
+                            parts.push('CELL_BEGIN_RALIGN');
                         }
                         parts.push({ 'text': name, 'format': { 'colour': namecolour, 'bold': true, 'italic': false } });
                         if (tables) {
-                            parts.push('CELL_END');
+                            parts.push('CELL_END_RALIGN');
                         }
                         
                         if (tables) {
