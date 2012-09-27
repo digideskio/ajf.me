@@ -55,6 +55,11 @@ a#whoosh {
     color: #afa;
 }
 
+.bitcoin {
+    font-family: monospace;
+    font-size: 75%;
+}
+
 footer {
     font-size: 9pt;
     color: gray;
