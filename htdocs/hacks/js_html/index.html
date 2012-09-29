@@ -1,0 +1,14 @@
+/*<!doctype html><meta charset=utf-8><title>JS App</title><noscript>Requires JS.</noscript><script src=#></script><!--*/
+(function () {
+    window.onload = function () {
+        var btn;
+        
+        document.body.innerHTML = '';
+        btn = document.createElement('button');
+        btn.innerHTML = "Turns out you can make an HTML file reinterpret itself as a JavaScript file by doing &lt;script src=#&gt;<br>Which means you can then just prepend a minimal header &quot;comment&quot; to your JS, and it's also a sort-of valid HTML page. In Chrome at least.<br>View the source.<br><br>And no, this isn't really that useful.";
+        btn.onclick = function () {
+            alert('Hi!');
+        };
+        document.body.appendChild(btn);
+    };
+}());
