@@ -15,9 +15,8 @@ const FILENAME = 'items.json';
 if (file_exists(FILENAME)) {
     $data = json_decode(file_get_contents(FILENAME));
 } else {
-    $data = [
-        'items' => []
-    ];
+    $data = new StdClass();
+    $data->items = [];
     file_put_contents(FILENAME, json_encode($data));
 }
 
