@@ -15,9 +15,10 @@ const FILENAME = 'items.json';
 if (file_exists(FILENAME)) {
     $data = json_decode(file_get_contents(FILENAME));
 } else {
-    file_put_contents(FILENAME, json_encode([
+    $data = [
         'items' => []
-    ]));
+    ];
+    file_put_contents(FILENAME, json_encode($data));
 }
 
 switch (isset($_REQUEST['p']) ? $_REQUEST['p'] : null) {
