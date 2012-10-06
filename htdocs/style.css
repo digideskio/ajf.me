@@ -35,6 +35,22 @@ article {
     clear: both;
     background-color: black;
 }
+#pony {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    opacity: 0;
+    background-color: rgba(176, 230, 255, 0.77);
+    border-top-left-radius: 20px;
+}
+#pony:hover {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+    -webkit-transition: opacity 1s ease-in;
+    -ms-transition: opacity 1s ease-in;
+    -o-transition: opacity 1s ease-in;
+    -moz-transition: opacity 1s ease-in;
+}
 #stars-superimpose {
     position: absolute;
     top: 10px;
