@@ -17,8 +17,8 @@ $html = <<< EOT
     <article>
         <canvas id=stars width=720 height=360><img src=stars-placeholder.png alt="Flying stars"></canvas>
         <div id=stars-superimpose>
-            <p>Hi! I'm Andrew, I live in Scotland and I love JavaScript. You can email me at <a href="mailto:ajf@ajf.me">ajf@ajf.me</a>, or follow me on <a href="https://github.com/TazeTSchnitzel/">GitHub</a> and <a href="https://twitter.com/TazeTSchnitzel">Twitter</a>.</p>
-            <p>If you're feeling generous, you can also donate to me: <a href="bitcoin:1JazMbBkXMZTACum7R1q4GonPfhoyuDN6c?label=Andrew+Faulds+(ajf.me)+Donation" class=bitcoin>1JazMbBkXMZTACum7R1q4GonPfhoyuDN6c</a></p>
+            <p>Hi! I'm Andrew, I live in Scotland and I make things with HTML5. You can email me at <a href="mailto:ajf@ajf.me">ajf@ajf.me</a>, or follow me on <a href="https://github.com/TazeTSchnitzel/">GitHub</a> and <a href="https://twitter.com/TazeTSchnitzel">Twitter</a>.</p>
+            <p>If you're feeling generous, you can donate to me: <a href="bitcoin:1JazMbBkXMZTACum7R1q4GonPfhoyuDN6c?label=Andrew+Faulds+(ajf.me)+Donation" class=bitcoin>1JazMbBkXMZTACum7R1q4GonPfhoyuDN6c</a></p>
             <p>I host the websites of my friends <a href="http://cats4gold.net">cats4gold</a> and <a href="http://orangestar.ajf.me">orangestar</a><a href=# id=whoosh title=whoosh>.</a> Some stuff on this site:</p>
             <ul>
                 <li><a href=/colourcode>BBCode chat colour-coder</a>
