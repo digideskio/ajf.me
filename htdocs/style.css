@@ -51,9 +51,6 @@ article {
     overflow: auto;
     font-size: 10pt;
 }
-#todo h1 {
-    margin: 5px;
-}
 #todo ul {
     list-style-type: none;
     padding-left: 0;
