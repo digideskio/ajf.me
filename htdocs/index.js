@@ -36,6 +36,15 @@
         return new Date().getTime() / 1000;
     };
 
+    function doPost(url, items, callback) {
+        var xhr = new XMLHttpRequest();
+        
+        xhr.onreadystatechange = callback;
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(postEncode(items));
+    }
+
     function postEncode(items) {
         var pairs = [];
         for (var key in items) {
@@ -62,31 +71,27 @@
     }
     
     function refresh() {
-        var xhr = new XMLHttpRequest();
-        
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                hideSpinner();
-                populate(JSON.parse(xhr.responseText));
-            }
-        };
-        xhr.open('POST', '?p=list', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        
-        xhr.send(postEncode({
+        doPost('?p=list', {
             password: password
-        }));
+        }, function () {
+            if (this.readyState === 4) {
+                hideSpinner();
+                populate(JSON.parse(this.responseText));
+            }
+        });
         
         clearItems();
         showSpinner();
     }
     
     function changeState(name, state) {
-        var xhr = new XMLHttpRequest();
-        
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                var data = JSON.parse(xhr.responseText);
+        doPost('?p=change_state', {
+            name: name,
+            state: state,
+            password: password
+        }, function () {
+            if (this.readyState === 4) {
+                var data = JSON.parse(this.responseText);
                 hideSpinner();
                 clearItems();
                 populate(data.result);
@@ -94,47 +99,34 @@
                     alert('No todo items found with that name!');
                 }
             }
-        };
-        xhr.open('POST', '?p=change_state', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        
-        xhr.send(postEncode({
-            name: name,
-            state: state,
-            password: password
-        }));
+        });
         
         showSpinner();
     }
     
     function addNew(name) {
-        var xhr = new XMLHttpRequest();
-        
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                var data = JSON.parse(xhr.responseText);
+        doPost('?p=add_item', {
+            name: name,
+            password: password
+        }, function () {
+            if (this.readyState === 4) {
+                var data = JSON.parse(this.responseText);
                 hideSpinner();
                 clearItems();
                 populate(data.result);
             }
-        };
-        xhr.open('POST', '?p=add_item', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        
-        xhr.send(postEncode({
-            name: name,
-            password: password
-        }));
+        });
         
         showSpinner();
     }
     
     function delItem(name) {
-        var xhr = new XMLHttpRequest();
-        
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                var data = JSON.parse(xhr.responseText);
+        doPost('?p=del_item', {
+            name: name,
+            password: password
+        }, function () {
+            if (this.readyState === 4) {
+                var data = JSON.parse(this.responseText);
                 hideSpinner();
                 clearItems();
                 populate(data.result);
@@ -142,14 +134,7 @@
                     alert('No todo items found with that name!');
                 }
             }
-        };
-        xhr.open('POST', '?p=del_item', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        
-        xhr.send(postEncode({
-            name: name,
-            password: password
-        }));
+        });
         
         showSpinner();
     }
@@ -218,11 +203,12 @@
         todo.appendChild(ul);
         
         document.getElementById('todo-launch').onclick = function () {
-            var xhr = new XMLHttpRequest();
-            
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    var data = JSON.parse(xhr.responseText);
+            password = prompt('Password');
+            doPost('?p=check_password', {
+                password: password
+            }, function () {
+                if (this.readyState === 4) {
+                    var data = JSON.parse(this.responseText);
                     if (data === true) {
                         todo.style.display = 'block';
                         refresh();
@@ -230,14 +216,7 @@
                         alert('bad password');
                     }
                 }
-            };
-            xhr.open('POST', '?p=check_password', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            
-            password = prompt('Password');
-            xhr.send(postEncode({
-                password: password
-            }));
+            });
         };
         
         var closebtn = document.createElement('input');
