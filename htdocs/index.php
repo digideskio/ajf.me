@@ -23,6 +23,7 @@ $html = <<< EOT
             <ul>
                 <li><a href=/colourcode>BBCode chat colour-coder</a>
                 <li><a href=/websocket>WebSocket info</a>
+                <li><a href="http://ponyplace.ajf.me">ponyplace</a>
                 <li><a href=/demos/200blocks>CSS 3D transforms demo</a>
                 <li><a href=/hacks>Silly web hacks</a>
             </ul>
