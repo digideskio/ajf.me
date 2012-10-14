@@ -251,6 +251,67 @@
                         parts.push({ 'text': '\n', 'format': false });
                     }
                 }
+            } else if (type === 'irc') {
+                pos = line.indexOf('<');
+                if (pos !== -1) {
+                    pos2 = line.indexOf('>', pos);
+                    if (pos2 !== -1) {
+                        if (pos !== 0) {
+                            time = line.slice(0, pos);
+                            if (tables) {
+                                parts.push('CELL_BEGIN');
+                            }
+                            parts.push({ 'text': time, 'format': { 'colour': false, 'bold': false, 'italic': false } });
+                            if (tables) {
+                                parts.push('CELL_END');
+                            }
+                        }
+                        name = line.slice(pos, pos2 + 1);
+                        message = line.slice(pos2 + 1);
+                        namecolour = getNameColour(name);
+                        if (tables) {
+                            parts.push('CELL_BEGIN_RALIGN');
+                        }
+                        parts.push({ 'text': name, 'format': { 'colour': namecolour, 'bold': true, 'italic': false } });
+                        if (tables) {
+                            parts.push('CELL_END_RALIGN');
+                        }
+                        
+                        if (tables) {
+                            parts.push('CELL_BEGIN');
+                        }
+                        parts.push({ 'text': message, 'format': false });
+                        if (tables) {
+                            parts.push('CELL_END');
+                        }
+                        
+                        if (!tables) {
+                            parts.push({ 'text': '\n', 'format': false });
+                        }
+                    } else {
+                        if (tables) {
+                            parts.push('CELL_BEGIN');
+                        }
+                        parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                        if (tables) {
+                            parts.push('CELL_END');
+                        }
+                        if (!tables) {
+                            parts.push({ 'text': '\n', 'format': false });
+                        }
+                    }
+                } else {
+                    if (tables) {
+                        parts.push('CELL_BEGIN');
+                    }
+                    parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                    if (tables) {
+                        parts.push('CELL_END');
+                    }
+                    if (!tables) {
+                        parts.push({ 'text': '\n', 'format': false });
+                    }
+                }
             }
             if (tables) {
                 parts.push('ROW_END');
@@ -314,6 +375,18 @@
 
         buttons = $('div')
             .clear();
+
+        button = $('button', buttons)
+            .display('block')
+            .text('IRC')
+            .handle('click', function () {
+                var parts;
+
+                parts = format(textbox.value, 'irc', useTables.checked);
+
+                toHTML(parts, preview);
+                output.value = toBBCode(parts);
+            });
 
         button = $('button', buttons)
             .display('block')
