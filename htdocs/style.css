@@ -1,5 +1,7 @@
 body {
     font-family: Arial, sans-serif;
+    color: white;
+    background-color: #E40045;
 }
 
 a img {
@@ -17,46 +19,20 @@ a img {
 #header h1 {
     margin-bottom: 0px;
 }
-#tagline {
-    font-size: 10pt;
-    color: gray;
-}
-#tagline a {
-    color: #7bf;
-    text-decoration: none;
-}
-#tagline a:hover {
-    text-decoration: underline;
-}
 
 #hero {
-    position: relative;
-}
-#stars {
     display: block;
-    width: 720px;
-    height: 360px;
+    max-width: 720px;
     clear: both;
-    background-color: black;
+    margin: 0 auto;
 }
-#stars-superimpose {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: white;
-    width: 200px;
-    padding: 5px;
-    font-size: 10pt;
-}
-#stars-superimpose a {
-    color: orange;
-    text-decoration: none;
-}
-#stars-superimpose a:hover {
+
+a {
     text-decoration: underline;
+    color: inherit;
 }
-a#whoosh {
-    color: #afa;
+a:hover {
+    text-decoration: none;
 }
 
 .bitcoin {
@@ -66,7 +42,6 @@ a#whoosh {
 
 #footer {
     font-size: 9pt;
-    color: gray;
     clear: both;
     margin-top: 5px;
 }
