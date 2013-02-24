@@ -22,6 +22,7 @@
                 };
                 socket.onerror = function () {
                     alert('Error!');
+                    socket.onclose();
                 };
                 socket.onclose = function () {
                     state.innerHTML = 'State: Disconnected.';
@@ -36,6 +37,8 @@
                     connectbtn.onclick = onclick;
                 };
                 connectbtn.innerHTML = 'Disconnect';
+
+                state.innerHTML = 'State: Connecting...';
 
                 sendbtn.onclick = function () {
                     socket.send(input.value);
