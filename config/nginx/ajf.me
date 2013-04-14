@@ -1,0 +1,12 @@
+server {
+    listen 80 default;
+    server_name ajf.me www.ajf.me;
+
+    access_log  /var/log/nginx/ajf.me.access.log;
+
+    root    /var/www/ajf.me;
+
+    location / {        
+        index   index.html index.php;
+    }
+}
