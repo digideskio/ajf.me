@@ -4,7 +4,6 @@
     var textbox, preview, output, format, getNameColour, toHTML, toBBCode, namecolours, coloursbox, nextcolour, icons, useTables;
 
     icons = {
-        post: 'data:image/gif;base64,R0lGODlhFAAUAMQUAKex1Jqjxba5u8bKzb7FyYGIjOPr79Tb3293fVJdgba9waCt0aaxw7K/4q65y/r9/1hXV8vY/FxiZvT7/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABQALAAAAAAUABQAAAWLICWOZGmWkiRC0GlKwyBBANC6onRMkxxFgAROx+P5gDfU7vEoHm3KycPRdEp+UFEBIXXwqFbsrWBAVMFS4xVJIU8QBirTWzysGxAyQsFgTuhFAmsBeXsGfoA8gj+EOQRFiROLEQFCIxKPVYGDSZePRZKDli+foYydpKELlKgnEoIUEI04JCortLgnIQA7',
         steam: 'data:image/gif;base64,R0lGODlhEAAQAIQPAAYGBgoKChsbG1VVVVxcXG5ubnNzc3x8fIyMjJSUlKioqLa2tr6+vsnJydHR0f///////////////////////////////////////////////////////////////////yH5BAEKABAALAAAAAAQABAAAAVjIASM5CgIgzCKJTk0T9wELSnAQf40tfkEiodC8OgBBr9YktBz/ILDB7OFiC1ygUJxUCIqv8yYwcD4KhMqgFlQFrfMD2IjXQp+iUYAwUFYLAQOeXpxgAaCAAcNDQZ0LSyHABAhADs='
     };
 
@@ -343,38 +342,21 @@
             .clear();
 
         textbox = $('textarea')
-            .size('30%', 400)
-            .display('block')
-            .left()
+            .id('textbox')
             .DOMElement;
 
         preview = $('div')
-            .borderBox()
-            .size('30%', 400)
-            .border(1, 'gray')
-            .display('block')
-            .left()
-            .margin(4)
-            .bg('rgb(236, 237, 243)', 'url(' + icons['post'] + ')', false)
-            .style('backgroundPosition', '4px 4px')
-            .style('backgroundAttachment', 'local')
-            .pad(4)
-            .style('paddingTop', '24px')
-            .font('Verdana, sans-serif', '13px')
-            .overflow('auto')
+            .id('preview')
             .text('(preview will appear here)')
             .DOMElement;
 
         output = $('textarea')
-            .size('30%', 400)
-            .display('block')
-            .left()
-            .margin(4)
+            .id('output')
             .text('(bbcode will appear here)')
             .DOMElement;
 
         buttons = $('div')
-            .clear();
+            .id('buttons');
 
         button = $('button', buttons)
             .display('block')

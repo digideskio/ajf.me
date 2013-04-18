@@ -34,6 +34,10 @@
         return input;
     };
 
+    Element.prototype.id = function (id) {
+        this.DOMElement.id = id;
+        return this;
+    };
     Element.prototype.text = function (string) {
         //this.DOMElement.innerText = string;#
         this.DOMElement.innerHTML = '';
