@@ -6,27 +6,46 @@
 <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBACAAEAAQCwAAAAFgAAACgAAAAQAAAAIAAAAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AP//AAD+fwAA/38AAP9/AADFbwAAuW8AAL1vAADBbwAA/W8AAL1vAADDQwAA/+8AAP9vAAD/8wAA//8AAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
 <title>ajf.me - Andrea's website</title>
 
-<div id=wrapper>
-    <div id=header>
-        <h1>ajf.me - Andrea's website</h1>
-    </div>
-    <div id=hero>
-        <p>Hi, I'm Andrea! :) I'm a programmer who lives in Scotland. I help develop <a href="http://ganggarrison.com/">Gang Garrison 2</a>. I'm also <a href="http://legendsofequestria.com/team">a programmer for Legends of Equestria</a>. My most recent project is <a href="http://lunasync.ajf.me/">lunasync</a>, a node.js-powered synchronised YouTube playlist service.</p>
-        <p>You can email me at <a href="mailto:ajf@ajf.me">ajf@ajf.me</a>, or follow me on <a href="https://github.com/TazeTSchnitzel/">GitHub</a> and <a href="https://twitter.com/TazeTSchnitzel">Twitter</a>. If you liked something I made, you can send me some Bitcoins: <a href="bitcoin:1JazMbBkXMZTACum7R1q4GonPfhoyuDN6c?label=Andrew+Faulds+(ajf.me)+Donation" class=bitcoin>1JazMbBkXMZTACum7R1q4GonPfhoyuDN6c</a> (or Flattr me: <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://ajf.me/"></a><noscript><a href="http://flattr.com/thing/1171450/ajf-me-Andreas-website" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>)</p>
-        <p>I also host the websites of my friends <a href="http://cats4gold.net">cats4gold</a> and <a href="http://orangestar.ajf.me">orangestar</a>. Some stuff on this site:</p>
+<section id=main>
+    <header>
+        <nav id=navbar>
+            <h2><a href="http://ajf.me/" id=navbar-logo>ajf.me</a></h2>
+        </nav>
+    </header>
+    <aside id=about-me>
+        <h2>About Me</h2>
+        <img id=about-me-photo src=avatars/mystialorelei.png alt="Andrea's avatar" title="My Avatar: Mystia Lorelei from Touhou.">
+        Hello, I'm Andrea. I live in Scotland and this is my website. It mostly exists as a place to put various things I make.
+        <h2>Contact</h2>
         <ul>
-            <li><a href=/colourcode>BBCode chat colour-coder</a>
-            <li><a href=/websocket>WebSocket info</a>
-            <li><a href=/demos/200blocks>CSS 3D transforms demo</a>
+            <li><a href="mailto:ajf@ajf.me">ajf@ajf.me</a>
+        </li>
+    </aside>
+    <article id=content>
+        <h2>My projects</h2>
+        <ul>
+            <li><a href="http://lunasync.ajf.me/">lunasync</a>
+            <li><a href="http://github.com/gg2-angl/angl">angl</a>
+            <li><a href="http://sumochi.ajf.me/">Sumochi</a>
+            <li><a href=/demos/nil/>Nil interpreter</a>
+            <li><a href=/colourcode/>BBCode chat colour-coder</a>
+            <li><a href=/websocket/>WebSocket information page</a>
+            <li><a href=/demos/200blocks/>CSS 3D Transforms test</a>
+            <li><a href="http://esolangs.org/wiki/Deviating_Percolator">DevPerc</a>
+        </ul>
+        <h2>See also</h2>
+        Websites of friends hosted by me:
+        <ul>
+            <li><a href="http://c4g.ajf.me/">c4g.ajf.me</a>
+            <li><a href="http://ostar.ajf.me/">ostar.ajf.me</a>
+            <li><a href="http://l3.ajf.me/">l3.ajf.me</a>
         </ul>
     </div>
-    <div id=footer>
+    </article>
+    <footer>
         Copyright &copy; 2010-2013 Andrea Faulds<br>
-        <a href="http://subtlepatterns.com/maze-black/">Maze Black</a> from subtlepatterns.org
-        <br>
-        <a href="http://internetdefenseleague.org"><img src="http://internetdefenseleague.org/images/badges/final/super_badge.png" alt="Member of The Internet Defense League" /></a>
-    </div>
-</div>
+    </footer>
+</section>
 
 <!-- I don't care, Google. Your analytics will be at the end of the page! -->
 <script type="text/javascript">
@@ -39,26 +58,3 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
-<!-- Internet Defense League -->
-<script type="text/javascript">
-    window._idl = {};
-    _idl.variant = "banner";
-    (function() {
-        var idl = document.createElement('script');
-        idl.type = 'text/javascript';
-        idl.async = true;
-        idl.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'members.internetdefenseleague.org/include/?url=' + (_idl.url || '') + '&campaign=' + (_idl.campaign || '') + '&variant=' + (_idl.variant || 'banner');
-        document.getElementsByTagName('body')[0].appendChild(idl);
-    })();
-</script>
-<!-- Flattr -->
-<script type="text/javascript">
-/* <![CDATA[ */
-    (function() {
-        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-        t.parentNode.insertBefore(s, t);
-    })();
-/* ]]> */</script>
