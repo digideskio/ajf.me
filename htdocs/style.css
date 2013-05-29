@@ -31,6 +31,7 @@ a img {
 #main {
     width: 800px;
     margin: 0 auto;
+    background: rgb(253, 240, 243);
 }
 
 #underneath, h2, h1, footer {
