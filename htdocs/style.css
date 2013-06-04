@@ -16,12 +16,32 @@ body {
     color: white;
     font: 12pt sans-serif;
     padding: 4px;
+    overflow: hidden;
 }
 
 #navbar-logo {
     font-weight: bold;
     text-decoration: none;
     color: white;
+}
+
+#language-switcher {
+    float: right;
+}
+
+.language {
+    list-style-type: none;
+    display: inline-block;
+    padding: 4px;
+}
+
+.language:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.language-current {
+    font-weight: bold;
 }
 
 a img {
@@ -34,7 +54,7 @@ a img {
     background: rgb(253, 240, 243);
 }
 
-#underneath, h2, h1, footer {
+#underneath, h2, header, footer {
     clear: both;
 }
 
