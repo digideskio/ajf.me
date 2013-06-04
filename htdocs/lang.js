@@ -45,7 +45,7 @@
             },
             websocket: {
                 en: "WebSocket information page",
-                es: "Página de información WebSocket",
+                es: "Página de información acerca de WebSocket",
                 de: "WebSocket Informationsseite"
             }
         },
