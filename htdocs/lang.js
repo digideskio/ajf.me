@@ -93,7 +93,59 @@
         switcher.appendChild(ul);
     }
 
+    function usePreferredLanguage() {
+        var preferences, preference, i;
+
+        // Relies on SSI in document body:
+        // <script>HTTP_ACCEPT_LANGUAGE = '<!--#echo var="HTTP_ACCEPT_LANGUAGE" -->';</script>
+        if (!window.hasOwnProperty('HTTP_ACCEPT_LANGUAGE')) {
+            return false;
+        }
+        if (!HTTP_ACCEPT_LANGUAGE) {
+            return false;
+        }
+
+        // Split into different languages (header is of format lang1,lang2,lang3,...)
+        preferences = HTTP_ACCEPT_LANGUAGE.split(',');
+
+        // Sort by preference
+        preferences.sort(function (q1, q2) {
+            var qFactor;
+
+            // get quality factors (header is of format lang;q=NUM,lang2;q=NUM2,...)
+            q1 = q1.split(';q=')[1] || 1; // assume q=1 if unspecified
+            q2 = q2.split(';q=')[1];
+
+            return q2 - q1;
+        });
+
+        console.log(preferences);
+
+        for (i = 0; i < preferences.length; i++) {
+            preference = preferences[i];
+
+            // Remove extra data (lang;stuff, we only want lang)
+            preference = preference.split(';')[0];
+
+            // If this language is available, use it
+            if (languages.hasOwnProperty(preference)) {
+                switchLanguage(preference);
+                break;
+            } else {
+                // Split off country code, if any
+                preference = preference.split('-')[0];
+
+                // Try again
+                if (languages.hasOwnProperty(preference)) {
+                    switchLanguage(preference);
+                    break;
+                }
+            }
+        }
+    }
+
     window.onload = function () {
-        updateLanguageList()
+        updateLanguageList();
+        usePreferredLanguage();
     };
 }());
