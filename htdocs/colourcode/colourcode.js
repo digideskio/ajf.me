@@ -182,7 +182,9 @@
                     if (tables) {
                         parts.push('CELL_BEGIN');
                     }
-                    parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                    if (line) {
+                        parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                    }
                     if (!tables) {
                         parts.push({ 'text': '\n', 'format': false });
                     }
@@ -243,7 +245,9 @@
                     if (tables) {
                         parts.push('CELL_BEGIN');
                     }
-                    parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                    if (line) {
+                        parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                    }
                     if (tables) {
                         parts.push('CELL_END');
                     }
@@ -292,7 +296,9 @@
                         if (tables) {
                             parts.push('CELL_BEGIN');
                         }
-                        parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                        if (line) {
+                            parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                        }
                         if (tables) {
                             parts.push('CELL_END');
                         }
@@ -304,7 +310,9 @@
                     if (tables) {
                         parts.push('CELL_BEGIN');
                     }
-                    parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                    if (line) {
+                        parts.push({ 'text': line, 'format': { 'colour': false, 'bold': false, 'italic': true } });
+                    }
                     if (tables) {
                         parts.push('CELL_END');
                     }
