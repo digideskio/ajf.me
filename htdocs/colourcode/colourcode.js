@@ -77,7 +77,8 @@
                     if (part.format.italic === true) {
                         element.style.fontStyle = 'italic';
                     }
-                    element.innerText = part.text;
+                    element.innerHTML = '';
+                    element.appendChild(document.createTextNode(part.text));
                     target.appendChild(element);
                 }
             }
