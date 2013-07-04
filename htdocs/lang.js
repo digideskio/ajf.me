@@ -43,7 +43,7 @@
                 en: "Websites of friends hosted by me:",
                 de: "Webseiten meiner Freunde, die ich hoste:",
                 es: "Sitios web de amigos que alojo:",
-                fr: "Sites web de mes amis que je héberge:"
+                fr: "Sites web de mes amis que j'héberge:"
             },
             bbcode: {
                 en: "BBCode chat colour-coder",
