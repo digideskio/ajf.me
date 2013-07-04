@@ -3,50 +3,59 @@
 
     var languages = {
             'en': 'English',
+            'de': 'Deutsch',
             'es': 'Español',
-            'de': 'Deutsch'
+            'fr': 'Français'
         },
         currentLanguage = 'en',
         strings = {
             description: {
                 en: "Hello, I'm Andrea. I live in Scotland and this is my website. I put the things I make here.",
+                de: "Hallo, ich bin Andrea. Ich wohne in Schottland und dies ist meine Webseite. Hier platziere ich die Dinge, die ich mache.",
                 es: "Hola, soy Andrea. Vivo en Escocia y este es mi sitio web. Pongo aquí las cosas que hago.",
-                de: "Hallo, Ich bin Andrea. Ich wohne in Schottland und dies ist meine Webseite. Hier platziere ich die Dinge, die ich mache."
+                fr: "Bonjour, je suis Andrea. J'habite en Ecosse et c'est mon site web. Je mets ici les choses que je fais."
             },
             about_me: {
                 en: "About me",
+                de: "Über mich",
                 es: "Acerca de mí",
-                de: "Über mich"
+                fr: "À propos de moi"
             },
             my_projects: {
                 en: "My projects",
+                de: "Meine Projekte",
                 es: "Mis proyectos",
-                de: "Meine Projekte"
+                fr: "Mes projets"
             },
             contact: {
                 en: "Contact",
+                de: "Kontakt",
                 es: "Contacto",
-                de: "Kontakt"
+                fr: "Contact"
             },
             see_also: {
                 en: "See also",
+                de: "Siehe auch",
                 es: "Véase también",
-                de: "Siehe auch"
+                fr: "Voir aussi"
             },
             friends_websites: {
                 en: "Websites of friends hosted by me:",
+                de: "Webseiten meiner Freunde, die ich hoste:",
                 es: "Sitios web de amigos que alojo:",
-                de: "Webseiten meiner Freunde, die ich hoste:"
+                fr: "Sites web de mes amis que je héberge:"
             },
             bbcode: {
                 en: "BBCode chat colour-coder",
+                de: "BBCode Chat-Protokoll Farbcodierung",
                 es: "Código BBCode de colores para registro de la charla",
-                de: "BBCode Chat-Protokoll Farbcodierung"
+                fr: "Code BBCode de colores pour journaux de chat"
             },
             websocket: {
                 en: "WebSocket information page",
+                de: "WebSocket Informationsseite",
                 es: "Página de información acerca de WebSocket",
-                de: "WebSocket Informationsseite"
+                fr: "Page d'information sur WebSocket"
             }
         },
         get = document.getElementById.bind(document);
