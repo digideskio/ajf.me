@@ -79,6 +79,14 @@ footer {
     float: right;
 }
 
+@media (max-width: 799px) {
+    #about-me, #content, #main {
+        width: auto;
+        float: none;
+        margin: 0;
+    }
+}
+
 #about-me-photo {
     width: 115px;
     height: 115px;
