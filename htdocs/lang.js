@@ -12,6 +12,19 @@
         }
     }
 
+    // Object.keys() shim for Opera Mini
+    if (!Object.hasOwnProperty('keys')) {
+        Object.keys = function (obj) {
+            var keys = [], name;
+            for (var name in obj) {
+                if (obj.hasOwnProperty(name)) {
+                    keys.push(name);
+                }
+            }
+            return keys;
+        };
+    }
+
     var languages = {
             'en': 'English',
             'de': 'Deutsch',
