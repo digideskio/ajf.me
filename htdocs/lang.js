@@ -27,6 +27,12 @@
                 es: "Mis proyectos",
                 fr: "Mes projets"
             },
+            projects_developer: {
+                en: "Projects for which I am a developer",
+                de: "Ich bin Entwickler für diese Projekte",
+                es: "Soy un desarrollador de estos proyectos",
+                fr: "Je suis un développeur pour ces projets" 
+            },
             contact: {
                 en: "Contact",
                 de: "Kontakt",
