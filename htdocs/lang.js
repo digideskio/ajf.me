@@ -1,6 +1,17 @@
 (function () {
     'use strict';
 
+    // .bind() shim for Opera Mini
+    function bind (what, to) {
+        if (what.hasOwnProperty('bind')) {
+            return what.bind(to);
+        } else {
+            return function () {
+                return what.apply(to, arguments);
+            };
+        }
+    }
+
     var languages = {
             'en': 'English',
             'de': 'Deutsch',
@@ -64,7 +75,7 @@
                 fr: "Page d'information sur WebSocket"
             }
         },
-        get = document.getElementById.bind(document);
+        get = bind(document.getElementById, document);
 
     function switchLanguage(language) {
         currentLanguage = language;
