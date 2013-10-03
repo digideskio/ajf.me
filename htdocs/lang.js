@@ -37,7 +37,7 @@
                 en: "Hello, I'm Andrea. I live in Scotland and this is my website. I put the things I make here.",
                 de: "Hallo, ich bin Andrea. Ich wohne in Schottland und dies ist meine Webseite. Hier platziere ich die Dinge, die ich mache.",
                 es: "Hola, soy Andrea. Vivo en Escocia y este es mi sitio web. Pongo aquí las cosas que hago.",
-                fr: "Bonjour, je suis Andrea. J'habite en Ecosse et c'est mon site web. Je mets ici les choses que je fais."
+                fr: "Bonjour, je suis Andrea. J'habite en Écosse et c'est mon site web. Je mets ici les choses que je fais."
             },
             about_me: {
                 en: "About me",
