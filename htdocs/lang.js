@@ -52,10 +52,16 @@
                 fr: "Mes projets"
             },
             projects_developer: {
-                en: "Projects for which I am a developer",
+                en: "Projects I am a developer of",
                 de: "Ich bin Entwickler für diese Projekte",
                 es: "Soy un desarrollador de estos proyectos",
                 fr: "Je suis un développeur pour ces projets" 
+            },
+            projects_contributor: {
+                en: "Projects I contribute to",
+                de: "Projekte, zu der ich beitrage",
+                es: "Proyectos, a los que contribuyo",
+                fr: "Projets auxquels je contribue" 
             },
             contact: {
                 en: "Contact",
