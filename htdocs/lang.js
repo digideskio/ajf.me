@@ -114,7 +114,7 @@
     function updateLanguageList() {
         var switcher, ul;
 
-        switcher = get('language-switcher');
+        switcher = get('language_switcher');
         switcher.innerHTML = '';
 
         ul = document.createElement('ul');
@@ -125,7 +125,7 @@
             li.lang = language;
             li.className = 'language';
             if (language === currentLanguage) {
-                li.className += ' language-current';
+                li.className += ' language_current';
             }
             (function (language) {
                 li.onclick = function () {
