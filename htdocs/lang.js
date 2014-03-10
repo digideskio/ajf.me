@@ -103,7 +103,7 @@
         Object.keys(strings).forEach(function (string) {
             var element;
 
-            element = get('text-' + string);
+            element = get('text_' + string);
             element.innerHTML = '';
             element.appendChild(document.createTextNode(strings[string][language]));
         });
