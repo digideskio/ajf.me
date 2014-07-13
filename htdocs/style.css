@@ -9,6 +9,7 @@ body {
     font-family: Georgia, serif;
     padding: 0;
     margin: 0;
+    background: url(noise.png);
 }
 
 h1 {
