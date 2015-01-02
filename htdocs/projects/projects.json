@@ -1,0 +1,99 @@
+{
+    "columns": [
+        {
+            "id": "year",
+            "name": "Year"
+        },
+        {
+            "id": "name",
+            "name": "Name"
+        },
+        {
+            "id": "url",
+            "name": "URL"
+        },
+        {
+            "id": "git",
+            "name": "GitHub repo"
+        },
+        {
+            "id": "dead",
+            "name": "Dead?"
+        },
+        {
+            "id": "desc",
+            "name": "Description"
+        }
+    ],
+    "projects": [
+        {
+            "year": "2013–ongoing",
+            "name": "Various PHP RFCs and patches",
+            "url": "https://wiki.php.net/rfc",
+            "dead": false,
+            "desc": "In particular: Closure::call, ZPP Failure on Overflow, Integer Semantics, Null Coalesce Operator, Unicode Codepoint Escape Syntax, and my biggest project so far: Big Integer Support"
+        },
+        {
+            "year": "2013",
+            "name": "PictoSwap",
+            "url": "http://pictoswap.ajf.me/",
+            "git": "https://github.com/TazeTSchnitzel",
+            "dead": false,
+            "desc": "A Nintendo 3DS web app made as a homage to the now-defunct Nintendo Letter Box (aka Swapnote)."
+        },
+        {
+            "year": "2011–2014",
+            "name": "Various Gang Garrison 2 contributions",
+            "url": "http://ganggarrison.com/",
+            "git": "https://github.com/Medo42/Gang-Garrison-2",
+            "dead": false,
+            "desc": "Mostly behind-the-scenes stuff. As part of this I wrote Faucet HTTP, a Game Maker Language HTTP/1.1 implementation!"
+        },
+        {
+            "year": "2014",
+            "name": "manic.js",
+            "git": "https://github.com/TazeTSchnitzel/manic.js",
+            "dead": false,
+            "desc": "A Minecraft Classic client written in JavaScript using WebSocket and THREE.js."
+        },
+        {
+            "year": "2013",
+            "name": "lunasync",
+            "git": "https://github.com/TazeTSchnitzel/lunasync",
+            "url": "http://lunasync.ajf.me/",
+            "dead": true,
+            "desc": "A YouTube playlist-synchronising chatroom written in JavaScript using node.js and WebSocket"
+        },
+        {
+            "year": "2013",
+            "name": "schnitzelVerse",
+            "git": "https://github.com/TazeTSchnitzel/schnitzelVerse",
+            "url": "http://schnitzelVerse.ajf.me/",
+            "dead": true,
+            "desc": "A multi-user visual chatroom formed as an offshoot of ponyplace, with user-uploadable 2D avatars, a world made up of infinitely-sized rooms decorated with user-generated content, having its own (non-turing-complete) scripting language. Written in JavaScript using node.js and WebSocket"
+        },
+        {
+            "year": "2012",
+            "name": "ponyplace",
+            "git": "https://github.com/TazeTSchnitzel/ponyplace",
+            "url": "http://ponyplace.ajf.me/",
+            "dead": true,
+            "desc": "A multi-user visual chatroom with animated 2D avatars, shopping system, accounts, multiple rooms, customisation, etc. Written in JavaScript using node.js and WebSocket"
+        },
+        {
+            "year": "2011",
+            "name": "DevPerc",
+            "git": "https://github.com/TazeTSchnitzel/DevPerc",
+            "url": "http://esolangs.org/wiki/DevPerc",
+            "dead": false,
+            "desc": "An esoteric programming language"
+        },
+        {
+            "year": "2010",
+            "name": "SchnitzelCraft/SchnitzelCraft0",
+            "git": "https://github.com/TazeTSchnitzel/SchnitzelCraft0",
+            "dead": true,
+            "desc": "A very poorly written (I was inexperienced) Minecraft Classic server written in C using WinSock and zlib"
+        }
+    ]
+}
