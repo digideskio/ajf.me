@@ -27,11 +27,11 @@
     ],
     "projects": [
         {
-            "year": "2013–ongoing",
+            "year": "2013–2015",
             "name": "Various PHP RFCs and patches",
             "url": "https://wiki.php.net/rfc",
-            "dead": false,
-            "desc": "In particular: Closure::call, ZPP Failure on Overflow, Integer Semantics, Null Coalesce Operator, Unicode Codepoint Escape Syntax, and my biggest project so far: Big Integer Support"
+            "dead": true,
+            "desc": "In particular: Closure::call, ZPP Failure on Overflow, Integer Semantics, Null Coalesce Operator, Unicode Codepoint Escape Syntax, and my biggest project so far: Big Integer Support. I also wrote an RFC for Scalar Type Hints. Alas, I quit on 2015-02-15 (see blog post)."
         },
         {
             "year": "2013",
