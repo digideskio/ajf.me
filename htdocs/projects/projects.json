@@ -27,6 +27,21 @@
     ],
     "projects": [
         {
+            "year": "2015",
+            "name": "Crockford Facts.org",
+            "url": "http://crockfordfacts.org/",
+            "git": "https://github.com/TazeTSchnitzel/crockfordfacts.org",
+            "dead": "false",
+            "desc": "A recreation of everyone's favourite Douglas Crockford biographical source."
+        },
+        {
+            "year": "2015",
+            "name": "Firth",
+            "git": "https://github.com/TazeTSchnitzel/Firth",
+            "dead": "false",
+            "desc": "A work-in-progress functional, strongly dynamically-typed, concatenative stack-oriented programming language."
+        },
+        {
             "year": "2013–2015",
             "name": "Various PHP RFCs and patches",
             "url": "https://wiki.php.net/rfc",
