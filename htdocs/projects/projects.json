@@ -28,6 +28,13 @@
     "projects": [
         {
             "year": "2015",
+            "name": "win95.ajf.me",
+            "url": "http://win95.ajf.me",
+            "dead": false,
+            "desc": "Windows 95 emulated in the browser, thanks to the wonderful work of Emscripten, DOSBox, Em-DOSBox and browser engine contributors."
+        },
+        {
+            "year": "2015",
             "name": "Crockford Facts.org",
             "url": "http://crockfordfacts.org/",
             "git": "https://github.com/TazeTSchnitzel/crockfordfacts.org",
