@@ -1,0 +1,99 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+}
+
+#wrapper {
+    width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 99px;
+    font-style: italic;
+    font-family: "Arial Black", Arial;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+}
+
+#subtitle {
+    text-transform: uppercase;
+    text-align: right;
+    padding: 10px;
+    background-color: #25b8b8;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#25b8b8), to(#000000));
+    background-image: -webkit-linear-gradient(top, #25b8b8, #000000);
+    background-image:    -moz-linear-gradient(top, #25b8b8, #000000);
+    background-image:     -ms-linear-gradient(top, #25b8b8, #000000);
+    background-image:      -o-linear-gradient(top, #25b8b8, #000000);
+    background-image:         linear-gradient(to bottom, #25b8b8, #000000);
+    clear: both;
+    margin-bottom: 10px;
+}
+
+#description2 {
+    float: right;
+    width: 400px;
+    background-color: red;
+    color: black;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+#description2 p {
+    margin: 0px;
+    padding: 5px;
+}
+
+#description2 h2 {
+    background-color: yellow;
+    margin: 0px;
+    padding: 5px;
+    font-size: 110%;
+    font-weight: normal;
+    text-align: center;
+}
+
+#progressbar {
+    height: 50px;
+    clear: both;
+    background-color: white;
+    margin-top: 15px;
+}
+
+#downloadbtn {
+    width: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 50px;
+    color: black;
+    background-color: #25b8b8;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 5px;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
+    border: 5px outset #25b8b8;
+}
+
+/*
+iframe {
+    display: none;
+}
+
+#downloadbtn:hover + iframe, iframe:hover {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+*/
