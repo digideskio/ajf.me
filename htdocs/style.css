@@ -24,7 +24,7 @@ main {
 
 img {
     float: left;
-    width: 100px;
+    width: 150px;
     margin: 10px;
     border-radius: 50% 10%; /* looks cool */
 }
