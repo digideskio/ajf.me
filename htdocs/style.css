@@ -22,7 +22,7 @@ main {
     margin: auto;
 }
 
-img {
+.avatar {
     float: left;
     width: 150px;
     margin: 10px;
