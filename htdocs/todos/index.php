@@ -8,6 +8,7 @@ $html = <<< EOT
 <title>todo</title>
 <link rel=stylesheet href=/style.css>
 <link rel=stylesheet href=style.css>
+<link rel="shortcut icon" href=favicon.ico>
 
 <main>
     <div id=todo></div>
