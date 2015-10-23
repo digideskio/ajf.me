@@ -24,6 +24,6 @@ li {
     vertical-align: bottom;
 }
 
-input[type=submit]:hover {
+.delete:hover {
     cursor: pointer;
 }
