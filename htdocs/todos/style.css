@@ -1,0 +1,29 @@
+input[type=text] {
+    border: 1px solid #808080;
+    border-radius: 4px;
+    padding: 2px;
+    box-shadow: inset 1px 1px 3px #D3D3D3;
+}
+
+li {
+    list-style-type: none;
+    position: relative;
+}
+
+.delete {
+    position: absolute;
+    left: -2em;
+    padding: 1px;
+    margin: 2px;
+    font-size: 70%;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: maroon;
+    background: none;
+    border: none;
+    vertical-align: bottom;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+}
