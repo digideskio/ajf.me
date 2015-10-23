@@ -125,6 +125,9 @@
             var item = data.items[i];
             
             var elem = document.createElement('li');
+            if (item.state) {
+                elem.className = 'done';
+            }
             
             var checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
