@@ -1,0 +1,61 @@
+.viewport {
+    position: relative;
+    perspective: 600px;
+    transform-style: preserve-3d;
+    overflow: hidden;
+}
+
+#viewport {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: purple;
+}
+
+.world {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+}
+
+.entity {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-style: preserve-3d;
+}
+
+.spinning {
+    animation-name: spin;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.walking {
+    animation-name: walk;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+}
+
+@keyframes spin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes walk {
+    from {
+        transform: translateZ(-1200px);
+    }
+    to {
+        transform: translateZ(1200px);
+    }
+}
