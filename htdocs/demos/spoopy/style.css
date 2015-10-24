@@ -35,27 +35,11 @@
     animation-timing-function: linear;
 }
 
-.walking {
-    animation-name: walk;
-    animation-duration: 15s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-out;
-}
-
 @keyframes spin {
     from {
         transform: rotateY(0deg);
     }
     to {
         transform: rotateY(360deg);
-    }
-}
-
-@keyframes walk {
-    from {
-        transform: translateZ(-1200px);
-    }
-    to {
-        transform: translateZ(1200px);
     }
 }
