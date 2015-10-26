@@ -33,7 +33,9 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 hideSpinner();
-                populate(JSON.parse(xhr.responseText));
+                var data = JSON.parse(xhr.responseText);
+                sortItems(data.items);
+                populate(data);
             }
         };
         xhr.open('POST', '?p=list', true);
@@ -55,6 +57,7 @@
                 var data = JSON.parse(xhr.responseText);
                 hideSpinner();
                 clearItems();
+                sortItems(data.result.items);
                 populate(data.result);
                 if (data.num_changed === 0) {
                     alert('No todo items found with that name!');
@@ -81,6 +84,7 @@
                 var data = JSON.parse(xhr.responseText);
                 hideSpinner();
                 clearItems();
+                sortItems(data.result.items);
                 populate(data.result);
             }
         };
@@ -103,6 +107,7 @@
                 var data = JSON.parse(xhr.responseText);
                 hideSpinner();
                 clearItems();
+                sortItems(data.result.items);
                 populate(data.result);
                 if (data.num_changed === 0) {
                     alert('No todo items found with that name!');
@@ -119,7 +124,33 @@
         
         showSpinner();
     }
-    
+
+    function cmp(a, b) {
+        if (a < b) {
+            return -1;
+        } else if (a > b) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /* check if an item begins with a YYYY-MM-DD ISO 8601 date */
+    function getDate(itemName) {
+        if (/^\d\d\d\d-\d\d-\d\d/.test(itemName)) {
+            return itemName.substr(0, 4 + 1 + 2 + 1 + 2);
+        } else {
+            return NaN;
+        }
+    }
+
+    // sort items in descending order by date, with completed items bottom
+    function sortItems(items) {
+        items.sort(function (a, b) {
+            return cmp(a.state, b.state) || cmp(getDate(b.name), getDate(a.name));
+        });
+    }
+
     function populate(data) {
         for (var i = 0; i < data.items.length; i++) {
             var item = data.items[i];
@@ -160,7 +191,7 @@
         var entryboxelem = document.createElement('li');
         var entrybox = document.createElement('input');
         entrybox.type = 'text';
-        entrybox.placeholder = 'new item';
+        entrybox.placeholder = 'YYYY-MM-DD new item';
         entrybox.onkeypress = function (e) {
             if (e.which == 13) {
                 addNew(entrybox.value);
