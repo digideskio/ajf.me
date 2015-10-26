@@ -140,14 +140,23 @@
         if (/^\d\d\d\d-\d\d-\d\d/.test(itemName)) {
             return itemName.substr(0, 4 + 1 + 2 + 1 + 2);
         } else {
-            return NaN;
+            return null;
         }
+    }
+
+    function isNull(value) {
+        return value === null;
     }
 
     // sort items in descending order by date, with completed items bottom
     function sortItems(items) {
         items.sort(function (a, b) {
-            return cmp(a.state, b.state) || cmp(getDate(b.name), getDate(a.name));
+            var aDate = getDate(a.name);
+            var bDate = getDate(b.name);
+            return (cmp(a.state, b.state)
+                || cmp(isNull(bDate), isNull(aDate))
+                || ((!isNull(aDate) && !isNull(bDate)) ? cmp(bDate, aDate) : 0)
+                || cmp(a.name, b.name));
         });
     }
 
