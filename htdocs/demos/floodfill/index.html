@@ -1,0 +1,151 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>Warring floodfill cellular automata</title>
+<link rel=stylesheet href=/style.css>
+<style>
+canvas {
+    display: block;
+    margin: 0 auto;
+}
+</style>
+
+<main>
+<h1>Warring floodfill cellular automata</h1>
+
+<p>Each pixel is an automaton, having a colour and targeting another.</p>
+
+<p>The canvas starts blank. Two dots of one colour are placed along a radial line, 25 and 100 pixels away from the centre, and along the same line another colour, 62½ away.</p>
+
+<p>A pixel encountering a targeted-colour neighbour will devour it half the time, substituting a self-replica.</p>
+
+<p>Rarely, a pixel goes rogue, targeting a differently-coloured neighbour.</p>
+
+<p>It iterates thirty times per second, but renders as often as possible.</p>
+
+<p>The automata become living art. Each story is told only once.</p>
+
+<noscript>
+<p>Sadly, one who is without JavaScript support finds themselves unable to experience the beauty for themselves; alas, words betray the full experience. If they were to only use a web browser which supported this unworldly tongue, and were to ensure it were not blocked, perhaps they would find happiness.</p>
+</noscript>
+
+</main>
+
+<script>
+(function () {
+    'use strict';
+
+    var width = 256;
+    var height = 256;
+
+    // The actual image where the floodfill takes place
+    // Each pixel is a cellular automaton
+    var image = new ImageData(width, height);
+    var u8cimage = image.data; // Uint8Clamped
+    var u32image = new Uint32Array(u8cimage.buffer);
+
+    // An off-screen image storing the 'target' colour for each automaton
+    // That is, the colour of pixels it will replace with itself 
+    var targets = new ArrayBuffer(width * height * 4);
+    var u8ctargets = new Uint8ClampedArray(targets);
+    var u32targets = new Uint32Array(targets);
+    
+    var ctx;
+
+    function coinToss() {
+        return Math.random() > 0.5;
+    }
+
+    function rarely() {
+        return !Math.floor(Math.random() * width * height);
+    }
+
+    function rand(upTo) {
+        return Math.floor(Math.random() * upTo);
+    }
+
+    function choose() {
+        return arguments[rand(arguments.length)];
+    }
+
+    function setPixel(u8carr, x, y, rgb) {
+        rgb.forEach(function (value, i) {
+            u8carr[y * width * 4 + x * 4 + i] = value;
+        });
+    }
+
+    function step() {
+        for (var pixel = 0; pixel < u32image.length; pixel++) {
+            var target = u32targets[pixel],
+                me = u32image[pixel];
+
+            // pixel above
+            if (u32image[pixel - width] === target && coinToss()) {
+                u32image[pixel - width] = me;
+                u32targets[pixel - width] = target;
+            }
+
+            // pixel below
+            if (u32image[pixel + width] === target && coinToss()) {
+                u32image[pixel + width] = me;
+                u32targets[pixel + width] = target;
+            }
+
+            // pixel left
+            if (u32image[pixel - 1] === target && coinToss()) {
+                u32image[pixel - 1] = me;
+                u32targets[pixel - 1] = target;
+            }
+
+            // pixel right
+            if (u32image[pixel + 1] === target && coinToss()) {
+                u32image[pixel + 1] = me; 
+                u32targets[pixel + 1] = target;
+            }
+
+
+            // Very rarely, we might want to retarget ourself at a different-coloured neighbour
+            if (rarely()) {
+                if (u32image[pixel - width] !== me) {
+                    u32targets[pixel] = u32image[pixel - width];
+                } else if (u32image[pixel + width] !== me) {
+                    u32targets[pixel] = u32image[pixel + width];
+                } else if (u32image[pixel - 1] !== me) {
+                    u32targets[pixel] = u32image[pixel - 1];
+                } else if (u32image[pixel + 1] !== me) {
+                    u32targets[pixel] = u32image[pixel + 1];
+                }
+            }
+        }
+    }
+
+    window.onload = function () {
+        var main = document.getElementsByTagName('main')[0];
+
+        var canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        main.appendChild(canvas);
+
+        ctx = canvas.getContext('2d');
+
+        // Add starting automata
+        for (var i = 0; i < 15; i++) {
+            var angle = Math.random() * (Math.PI * 2);
+            var colour = [rand(255), rand(255), rand(255), 255];
+            var colour2 = [rand(255), rand(255), rand(255), 255];
+
+            setPixel(u8cimage, Math.round(width / 2 + Math.sin(angle) * 100), Math.round(height / 2 + Math.cos(angle) * 100), colour);
+            setPixel(u8cimage, Math.round(width / 2 + Math.sin(angle) * 25), Math.round(height / 2 + Math.cos(angle) * 25), colour);
+            setPixel(u8cimage, Math.round(width / 2 + Math.sin(angle) * 62.5), Math.round(height / 2 + Math.cos(angle) * 62.5), colour2);
+        }
+
+        window.setInterval(step, 1000/30);
+
+        requestAnimationFrame(function render() {
+            ctx.putImageData(image, 0, 0);
+
+            requestAnimationFrame(render);
+        });
+    };
+}());
+</script>

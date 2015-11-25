@@ -28,6 +28,13 @@
     "projects": [
         {
             "year": "2015",
+            "name": "Warring floodfill cellular automata",
+            "url": "http://ajf.me/demos/floodfill/",
+            "dead": false,
+            "desc": "Colours that live."
+        },
+        {
+            "year": "2015",
             "name": "win95.ajf.me",
             "url": "http://win95.ajf.me",
             "dead": false,
