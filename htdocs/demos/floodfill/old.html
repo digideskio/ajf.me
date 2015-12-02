@@ -23,7 +23,7 @@ canvas {
 
 <p>It iterates thirty times per second, but renders as often as possible.</p>
 
-<p>A <a href=old.html>previous version</a> of the code had a severe bottom-right corner bias. Can you <a href="view-source:http://ajf.me/demos/floodfill/old.html">figure out why</a>?</p>
+<p>This is an older version of the code which is biased towards the bottom-right corner due to a bug. <a href=".">The latest version</a> lacks this issue.</p>
 
 <noscript>
 <p>Sadly, one who is without JavaScript support finds themselves unable to experience the beauty; alas, words can do it no justice. If only they would use a web browser which supported this unworldly tongue, perhaps they would find happiness.</p>
@@ -85,21 +85,16 @@ canvas {
                 u32targets[pixel - width] = target;
             }
 
-            // pixel left
-            if (u32image[pixel - 1] === target && coinToss()) {
-                u32image[pixel - 1] = me;
-                u32targets[pixel - 1] = target;
-            }
-        }
-
-        for (var pixel = u32image.length - 1; pixel >= 0; pixel--) {
-            var target = u32targets[pixel],
-                me = u32image[pixel];
-
             // pixel below
             if (u32image[pixel + width] === target && coinToss()) {
                 u32image[pixel + width] = me;
                 u32targets[pixel + width] = target;
+            }
+
+            // pixel left
+            if (u32image[pixel - 1] === target && coinToss()) {
+                u32image[pixel - 1] = me;
+                u32targets[pixel - 1] = target;
             }
 
             // pixel right
@@ -107,12 +102,7 @@ canvas {
                 u32image[pixel + 1] = me; 
                 u32targets[pixel + 1] = target;
             }
-        }
 
-
-        for (var pixel = 0; pixel < u32image.length; pixel++) {
-            var target = u32targets[pixel],
-                me = u32image[pixel];
 
             // Very rarely, we might want to retarget ourself at a different-coloured neighbour
             if (rarely()) {
