@@ -5,9 +5,6 @@ server {
     listen [::]:443 ssl;
     server_name ajf.me www.ajf.me;
 
-    ssl_certificate /etc/nginx/ssl/nginx.crt;
-    ssl_certificate_key /etc/nginx/ssl/nginx.key;
-
     access_log  /var/log/nginx/ajf.me.access.log;
     error_log   /var/log/nginx/ajf.me.error.log;
 
