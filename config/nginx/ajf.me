@@ -1,14 +1,17 @@
 server {
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
     server_name ajf.me www.ajf.me;
 
-    access_log  /var/log/nginx/ajf.me.access.log;
-
-    root    /var/www/ajf.me;
-
-    listen 80;
-    listen 443 ssl;
     ssl_certificate /etc/nginx/ssl/nginx.crt;
     ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+    access_log  /var/log/nginx/ajf.me.access.log;
+    error_log   /var/log/nginx/ajf.me.error.log;
+
+    root    /var/www/ajf.me;
 
     location / {        
         index   index.html index.php;
@@ -17,9 +20,6 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass   unix:/var/run/php5-fpm.sock;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include fastcgi_params;
+        include fastcgi_php_passthru;
     }
 }
