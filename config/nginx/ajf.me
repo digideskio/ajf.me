@@ -11,6 +11,8 @@ server {
     listen [::]:443 ssl;
     server_name ajf.me www.ajf.me;
 
+    add_header Strict-Transport-Security "max-age=31536000";
+
     access_log  /var/log/nginx/ajf.me.access.log;
     error_log   /var/log/nginx/ajf.me.error.log;
 
