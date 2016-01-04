@@ -9,20 +9,20 @@
             "name": "Name"
         },
         {
-            "id": "url",
-            "name": "URL"
-        },
-        {
-            "id": "git",
-            "name": "GitHub repo"
+            "id": "desc",
+            "name": "Description"
         },
         {
             "id": "dead",
             "name": "Dead?"
         },
         {
-            "id": "desc",
-            "name": "Description"
+            "id": "url",
+            "name": "URL"
+        },
+        {
+            "id": "git",
+            "name": "GitHub repo"
         }
     ],
     "projects": [
