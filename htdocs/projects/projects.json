@@ -119,7 +119,7 @@
         },
         {
             "year": "2010",
-            "name": "SchnitzelCraft/SchnitzelCraft0",
+            "name": "SchnitzelCraft/0",
             "git": "https://github.com/TazeTSchnitzel/SchnitzelCraft0",
             "dead": true,
             "desc": "A very poorly written (I was inexperienced) Minecraft Classic server written in C using WinSock and zlib"

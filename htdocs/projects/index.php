@@ -2,6 +2,11 @@
 <meta charset=utf-8>
 <title>Andrea's projects</title>
 <link rel=stylesheet href=../style.css>
+<style>
+.col-name {
+    max-width: 150px;
+}
+</style>
 
 <main>
     <h1>Stuff I've made</h1>
@@ -18,7 +23,7 @@
         <thead>
             <tr>
                 <?php foreach ($data->columns as $column): ?>
-                    <th><?=htmlspecialchars($column->name)?></th>
+                    <th class=col-<?=$column->id?>><?=htmlspecialchars($column->name)?></th>
                 <?php endforeach; ?>
             </tr>
         </thead>
@@ -26,15 +31,17 @@
             <?php foreach ($data->projects as $project): ?>
                 <tr>
                     <?php foreach ($data->columns as $column): ?>
-                        <?php if (!isset($project->{$column->id})): ?>
-                            <td></td>
-                        <?php elseif ($column->id === 'dead'): ?> 
-                            <td><?=$project->dead ? "Yep" : "Not yet"?></td>
-                        <?php elseif ($column->id === 'url' || $column->id === 'git'): ?>
-                            <td><a href="<?=htmlspecialchars($project->{$column->id})?>">Link</a></td>
-                        <?php else: ?>
-                            <td><?=htmlspecialchars($project->{$column->id})?></td>
-                        <?php endif; ?>
+                        <td class=col-<?=$column->id?>>
+                            <?php if (!isset($project->{$column->id})): ?>
+                                <?php /* this space left intentionally blank */ ?>
+                            <?php elseif ($column->id === 'dead'): ?>
+                                <?=$project->dead ? "Yep" : "Not yet"?>
+                            <?php elseif ($column->id === 'url' || $column->id === 'git'): ?>
+                                <a href="<?=htmlspecialchars($project->{$column->id})?>">Link</a>
+                            <?php else: ?>
+                                <?=htmlspecialchars($project->{$column->id})?>
+                            <?php endif; ?>
+                        </td>
                     <?php endforeach; ?>
                 </tr>
             <?php endforeach; ?>
