@@ -40,3 +40,16 @@ footer {
 td {
     vertical-align: top;
 }
+
+body.♀::before {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 320px;
+    font-weight: bold;
+    content: '♀';
+    color: purple;
+    opacity: 0.1;
+    transform: translate(5vw, 50px) rotate(-30deg);
+}
