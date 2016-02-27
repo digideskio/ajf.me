@@ -233,6 +233,7 @@
                     var data = JSON.parse(xhr.responseText);
                     if (data === true) {
                         todo.style.display = 'block';
+                        document.getElementById('todo-launch').style.display = 'none';
                         refresh();
                     } else {
                         alert('bad password');
