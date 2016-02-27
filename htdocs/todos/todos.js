@@ -210,6 +210,34 @@
         ul.appendChild(entryboxelem);
     }
 
+    function login(tryPassword) {
+        var xhr = new XMLHttpRequest();
+        
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var data = JSON.parse(xhr.responseText);
+                if (data === true) {
+                    localStorage.setItem('password', tryPassword);
+                    password = tryPassword;
+                    todo.style.display = 'block';
+                    document.getElementById('todo-launch').style.display = 'none';
+                    refresh();
+                } else {
+                    if (tryPassword === localStorage.getItem('password')) {
+                        localStorage.removeItem('password');
+                    }
+                    alert('bad password');
+                }
+            }
+        };
+        xhr.open('POST', '?p=check_password', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            
+        xhr.send(postEncode({
+            password: tryPassword
+        }));
+    }
+
     window.onload = function () {
         var todo = document.getElementById('todo');
         
@@ -225,28 +253,11 @@
         ul = document.createElement('ul');
         todo.appendChild(ul);
         
+        if (localStorage.getItem('password') !== null) {
+            login(localStorage.getItem('password'));
+        }
         document.getElementById('todo-launch').onclick = function () {
-            var xhr = new XMLHttpRequest();
-            
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    var data = JSON.parse(xhr.responseText);
-                    if (data === true) {
-                        todo.style.display = 'block';
-                        document.getElementById('todo-launch').style.display = 'none';
-                        refresh();
-                    } else {
-                        alert('bad password');
-                    }
-                }
-            };
-            xhr.open('POST', '?p=check_password', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            
-            password = prompt('Password');
-            xhr.send(postEncode({
-                password: password
-            }));
+            login(prompt('Password'));
         };
     };
 }());
