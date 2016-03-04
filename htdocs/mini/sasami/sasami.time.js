@@ -23,7 +23,7 @@
 
     function drawHand(ctx, length) {
         layer(ctx, function () {
-            ctx.rotate(-τ / 2);
+            ctx.rotate(-τ / 4);
             ctx.scale(length / hand.width, length / hand.width);
             ctx.drawImage(hand, 0, -hand.height / 2);
         });
@@ -53,37 +53,28 @@
             var time = (new Date).getTime() / 1000;
 
             var seconds = time % 60,
-                minutes = (time % 3600) / 60,
-                hours = (time % 86400) / 3600;
+                minutes = (time / 60) % 60,
+                hours = (time / 3600) % 12;
 
-            //clear(cv);
             ctx.globalAlpha = 1/128;
             ctx.drawImage(sasami, 0, 0);
             ctx.globalAlpha = 1;
-            //ctx.fillStyle = 'rgba(255, 255, 255, 0.125)';
-            //ctx.fillRect(0, 0, cv.width, cv.height);
 
             layer(ctx, function () {
                 ctx.translate(640, 245);
 
                 layer(ctx, function () {
                     ctx.rotate((seconds / 60) * τ);
-                    ctx.strokeStyle = 'black';
-                    ctx.lineWidth = 1;
                     drawHand(ctx, radius);
                 });
 
                 layer(ctx, function () {
                     ctx.rotate((minutes / 60) * τ);
-                    ctx.strokeStyle = 'black';
-                    ctx.lineWidth = 2;
                     drawHand(ctx, radius * 2/3);
                 });
 
                 layer(ctx, function () {
-                    ctx.rotate((hours / 24) * τ);
-                    ctx.strokeStyle = 'black';
-                    ctx.lineWidth = 3;
+                    ctx.rotate((hours / 12) * τ);
                     drawHand(ctx, radius * 1/2);
                 });
             });
