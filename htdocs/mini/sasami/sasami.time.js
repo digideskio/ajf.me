@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     'use strict';
     var τ = Math.PI * 2;
     var cv, ctx;
