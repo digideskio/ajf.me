@@ -5,14 +5,6 @@
     var hand;
     var radius = 200;
 
-    function clear(cv) {
-        // when you resize a canvas, it's cleared
-        // this is the """""""""idiomatic"""""""""] way to clear a canvas in JS
-        // I know what you're thinking. Yes, it's terrible.
-
-        cv.width = cv.width;
-    }
-
     // No longer needed, of course, but let's keep it anyway.
     function line(ctx, length) {
         ctx.beginPath();
